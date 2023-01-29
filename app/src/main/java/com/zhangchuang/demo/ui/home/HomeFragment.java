@@ -14,14 +14,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.databinding.FragmentHomeBinding;
 import com.zhangchuang.demo.ui.start.GuideActivity;
+import com.zhangchuang.demo.utils.MyLoader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private Banner banner;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +41,23 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        banner = view.findViewById(R.id.vv_banner);
+        initView();
         return view;
+    }
+
+    private void initView() {
+        //资源文件
+        List images = new ArrayList<Integer>();
+        images.add(R.drawable.phone1);
+        images.add(R.drawable.phone2);
+        images.add(R.drawable.phone3);
+        images.add(R.drawable.phone4);
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        banner.setImageLoader(new MyLoader());
+        banner.setImages(images);
+        banner.setBannerAnimation(Transformer.DepthPage);
+        banner.start();
     }
 
 }

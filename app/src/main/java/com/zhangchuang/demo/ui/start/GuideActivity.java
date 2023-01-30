@@ -1,42 +1,45 @@
 package com.zhangchuang.demo.ui.start;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.media.Image;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.zhangchuang.demo.R;
-import com.zhangchuang.demo.utils.MyLoader;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GuideActivity extends AppCompatActivity {
 
-    private Banner banner;
+    private ArrayList<View> views = new ArrayList<>();
+
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
+
         initView();
     }
 
-    private void initView() {
-        banner = findViewById(R.id.v_banner);
-        //资源文件
-        List images = new ArrayList<Integer>();
-        images.add(R.drawable.phone1);
-        images.add(R.drawable.phone2);
-        images.add(R.drawable.phone3);
-        images.add(R.drawable.phone4);
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-        banner.setImageLoader(new MyLoader());
-        banner.setImages(images);
-        banner.setBannerAnimation(Transformer.DepthPage);
-        banner.start();
+
+    public void initView() {
+        viewPager = findViewById(R.id.viewPager);
+        LayoutInflater from = getLayoutInflater().from(GuideActivity.this);
+        View inflate1 = from.inflate(R.layout.activity_one, null);
+        View inflate2 = from.inflate(R.layout.activity_two, null);
+        View inflate3 = from.inflate(R.layout.activity_three, null);
+        View inflate4 = from.inflate(R.layout.activity_four, null);
+        views.add(inflate1);
+        views.add(inflate2);
+        views.add(inflate3);
+        views.add(inflate4);
+        viewPager.setAdapter(new MyViewPager(views));
     }
+
+
 }

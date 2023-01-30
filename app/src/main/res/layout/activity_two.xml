@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.start.GuideActivity">
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    tools:context=".ui.start.OneActivity"
+    android:background="@drawable/phone2">
+
 </androidx.constraintlayout.widget.ConstraintLayout>

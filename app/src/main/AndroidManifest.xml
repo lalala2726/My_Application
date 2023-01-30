@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".ui.start.GuideActivity"></activity>
+        <activity android:name=".ui.start.FourActivity"></activity>
+        <activity android:name=".ui.start.ThreeActivity" />
+        <activity android:name=".ui.start.TwoActivity" />
+        <activity android:name=".ui.start.OneActivity" />
+        <activity android:name=".ui.start.GuideActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

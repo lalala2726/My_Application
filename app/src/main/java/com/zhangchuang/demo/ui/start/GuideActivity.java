@@ -1,6 +1,8 @@
 package com.zhangchuang.demo.ui.start;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -26,6 +28,11 @@ public class GuideActivity extends AppCompatActivity {
         initView();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return false;
+    }
+
 
     public void initView() {
         viewPager = findViewById(R.id.viewPager);
@@ -38,6 +45,14 @@ public class GuideActivity extends AppCompatActivity {
         views.add(inflate2);
         views.add(inflate3);
         views.add(inflate4);
+        inflate4.findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), EditConfigActivity.class);
+                startActivity(intent);
+            }
+        });
         viewPager.setAdapter(new MyViewPager(views));
     }
 

@@ -1,6 +1,8 @@
 package com.zhangchuang.demo;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -11,10 +13,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.zhangchuang.demo.databinding.ActivityMainBinding;
+import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
+import com.zhangchuang.demo.ui.start.GuideActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,5 +38,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return false;
+    }
+
+
 
 }

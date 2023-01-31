@@ -1,5 +1,6 @@
 package com.zhangchuang.demo.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,15 +20,20 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.databinding.FragmentHomeBinding;
+import com.zhangchuang.demo.service.ApplicationService;
+import com.zhangchuang.demo.ui.TestActivity;
+import com.zhangchuang.demo.ui.start.EditConfigActivity;
 import com.zhangchuang.demo.ui.start.GuideActivity;
 import com.zhangchuang.demo.utils.MyLoader;
 
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private Banner banner;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +49,16 @@ public class HomeFragment extends Fragment {
         });
         banner = view.findViewById(R.id.vv_banner);
         initView();
+        view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent.setClass(getActivity(), TestActivity.class));
+            }
+        });
+
         return view;
     }
+
 
     private void initView() {
         //资源文件

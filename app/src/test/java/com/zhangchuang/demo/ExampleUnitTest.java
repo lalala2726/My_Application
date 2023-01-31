@@ -1,5 +1,10 @@
 package com.zhangchuang.demo;
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.zhangchuang.demo.service.ApplicationService;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,8 +15,13 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
+    private ApplicationService applicationService;
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
 }

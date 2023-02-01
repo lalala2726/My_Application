@@ -4,4 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment"/>
+    tools:context=".ui.notifications.NotificationsFragment">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="120dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,17 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.zhangchuang.demo.databinding.ActivityMainBinding;
-import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
-import com.zhangchuang.demo.ui.start.GuideActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+        //隐藏标题栏
+        getSupportActionBar().hide();
     }
 
     @Override

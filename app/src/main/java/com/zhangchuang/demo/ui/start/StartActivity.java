@@ -1,15 +1,14 @@
 package com.zhangchuang.demo.ui.start;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
-import com.zhangchuang.demo.ui.home.HomeFragment;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -19,6 +18,8 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         init();
+        //隐藏标题栏
+        getSupportActionBar().hide();
     }
 
     public void init() {

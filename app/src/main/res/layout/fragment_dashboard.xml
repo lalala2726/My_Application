@@ -1,7 +1,295 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="UTF-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment"/>
+    android:background="@color/white_10">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
+                    android:text="城市服务"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rela_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line1">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+            </RelativeLayout>
+            <!--城市服务-->
+            <RelativeLayout
+                android:id="@+id/rela_2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/rela_1"
+                android:background="@color/white">
+                <!--生活缴费-->
+                <LinearLayout
+                    android:id="@+id/line2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_bianmin"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_baseline_local_taxi_24"></Button>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="智慧交管">
+
+                    </TextView>
+                </LinearLayout>
+                <!--地铁服务-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
+                    android:layout_toRightOf="@id/line2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_subway"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_baseline_subway_24"></Button>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="城市地铁"></TextView>
+                </LinearLayout>
+            </RelativeLayout>
+            <!--            边界线-->
+            <RelativeLayout
+                android:id="@+id/rela_3"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@id/rela_2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white_10">
+
+                    </View>
+                </LinearLayout>
+            </RelativeLayout>
+            <!--            便民服务-->
+            <RelativeLayout
+                android:id="@+id/rela_4"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/rela_3"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
+                    android:text="便民服务"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rela_5"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/rela_4"
+                android:layout_marginTop="1dp"
+                android:background="@color/white">
+                <!--                找工作-->
+                <LinearLayout
+                    android:id="@+id/line3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_baseline_work_24"></Button>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="找工作">
+
+                    </TextView>
+                </LinearLayout>
+                <!--找房子-->
+                <LinearLayout
+                    android:id="@+id/line4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="60dp"
+                    android:layout_toRightOf="@id/line3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_baseline_business_24"></Button>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="找房子">
+
+                    </TextView>
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--生活缴费-->
+            <RelativeLayout
+                android:id="@+id/rela_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rela_5">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/white_10"></View>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rela_7"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/rela_6"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
+                    android:text="充值缴费"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rela_8"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/rela_7"
+                android:layout_marginTop="1dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="35dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_baseline_widgets_24"></Button>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="生活缴费">
+
+                    </TextView>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rela_9"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/rela_8"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
+                    android:text="娱乐购物"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rela_10"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/rela_9"
+                android:layout_marginTop="1dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:id="@+id/line5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="35dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_baseline_sentiment_very_satisfied_24"></Button>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="外卖订餐">
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

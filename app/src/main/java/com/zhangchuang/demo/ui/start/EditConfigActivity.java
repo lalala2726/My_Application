@@ -20,6 +20,8 @@ public class EditConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editconfig);
+        //隐藏标题栏
+        getSupportActionBar().hide();
         init();
     }
 
@@ -41,14 +43,15 @@ public class EditConfigActivity extends AppCompatActivity {
                 System.out.println("ip = " + ip);
                 if ("".equals(ip) || "".equals(port)) {
                     toastUtil.displayMas("请填写完整！");
+                    return;
                 }
-                if (applicationService.saveConfig(ip,port)) {
+                if (applicationService.saveConfig(ip, port)) {
 
                     toastUtil.displayMas("保存成功！");
                     Intent intent = new Intent();
                     intent.setClass(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     toastUtil.displayMas("保存失败！请重启设备或重新安装软件！");
                 }
             }

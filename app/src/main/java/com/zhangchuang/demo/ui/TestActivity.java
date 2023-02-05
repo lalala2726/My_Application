@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
+import com.zhangchuang.demo.network.UserNetwork;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 import com.zhangchuang.demo.ui.start.EditConfigActivity;
 import com.zhangchuang.demo.utils.ToastUtil;
@@ -48,8 +49,8 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.setClass(getApplicationContext(), EditConfigActivity.class);
-                startActivity(intent);
+                UserNetwork userNetwork = new UserNetwork();
+                userNetwork.testNetwork();
             }
         });
     }

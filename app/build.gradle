@@ -35,6 +35,9 @@ android {
 
 dependencies {
 
+    implementation files('libs\\okhttp-4.9.0.jar')
+    implementation files('libs\\okio-jvm-2.8.0.jar')
+
     implementation files('libs\\disklrucache-4.10.0.jar')
     implementation files('libs\\viewpager2-1.0.0-sources.jar')
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
@@ -46,6 +49,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation files('libs\\disklrucache-4.10.0.jar')
+    implementation files('libs/okhttp-4.9.0.jar')
+    implementation files('libs/okio-jvm-2.8.0.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

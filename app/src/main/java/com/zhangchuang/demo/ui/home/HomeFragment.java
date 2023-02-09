@@ -35,8 +35,28 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     //定义图片资源
-    int[] icons ={R.drawable.phone1,R.drawable.phone2,R.drawable.phone3,R.drawable.phone4,R.drawable.phone1};
+    int[] icons ={R.drawable.phone1,R.drawable.phone2,R.drawable.phone3,R.drawable.phone4,R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,
+            R.drawable.phone1,};
     String[] titles = {"这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
             "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
             "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
             "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
@@ -81,7 +101,7 @@ public class HomeFragment extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = View.inflate(getActivity(),R.layout.news,null);
             TextView title = view.findViewById(R.id.textView14);
-            ImageView viewById = view.findViewById(R.id.imageView4);
+            ImageView viewById = view.findViewById(R.id.imageView3);
             title.setText(titles[position]);
             viewById.setImageResource(icons[position]);
             return view;

@@ -2,17 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zhangchuang.demo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-        <activity android:name=".ui.notifications.UserinfoActivity"></activity>
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".NewsActivity"
+            android:exported="false" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.notifications.UserinfoActivity" />
         <activity android:name=".ui.start.EditConfigActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.TestActivity" />

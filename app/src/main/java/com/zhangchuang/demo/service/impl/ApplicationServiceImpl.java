@@ -25,7 +25,6 @@ public class ApplicationServiceImpl implements ApplicationService {
     /**
      * 判断用户是否配置过信息
      *
-     *
      * @return
      */
     @Override
@@ -59,6 +58,17 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         System.out.println("ip = " + ip + ", port = " + port);
         return false;
+    }
+
+    /**
+     * 判断用户是否登录
+     * @return
+     */
+    @Override
+    public boolean FirstLogin() {
+        SharedPreferences application = context.getSharedPreferences("Application", Context.MODE_PRIVATE);
+        boolean aBoolean = application.getBoolean("Application", false);
+        return aBoolean;
     }
 
 

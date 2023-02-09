@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,34 +34,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+    //定义图片资源
+    int[] icons ={R.drawable.phone1,R.drawable.phone2,R.drawable.phone3,R.drawable.phone4,R.drawable.phone1};
+    String[] titles = {"这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",
+            "这是需要演示的文本信息,文本信息文本信息文本信息文本信息文本信息",};
 
     private Banner banner;
-
+    private ListView listView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        Intent intent = new Intent();
-        Button test = view.findViewById(R.id.button);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent.setClass(getActivity(), GuideActivity.class);
-                startActivity(intent);
-            }
-        });
         banner = view.findViewById(R.id.vv_banner);
         initView();
-        view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent.setClass(getActivity(), TestActivity.class));
-            }
-        });
-
+        listView = view.findViewById(R.id.new_list);
+        NewsAdapter newsAdapter = new NewsAdapter();
+        listView.setAdapter(newsAdapter);
         return view;
     }
 
+
+    private class NewsAdapter extends BaseAdapter{
+        //获取item的数量
+        @Override
+        public int getCount() {
+            return icons.length;
+        }
+
+        //记录浏览的列表
+        @Override
+        public Object getItem(int position) {
+            return titles[icons.length];
+        }
+
+        //获取选中的序号
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        //用于加载ListView需要加载的内容
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = View.inflate(getActivity(),R.layout.news,null);
+            TextView title = view.findViewById(R.id.textView14);
+            ImageView viewById = view.findViewById(R.id.imageView4);
+            title.setText(titles[position]);
+            viewById.setImageResource(icons[position]);
+            return view;
+        }
+    }
 
     private void initView() {
         //资源文件

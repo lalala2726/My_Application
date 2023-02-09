@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
+import com.zhangchuang.demo.ui.login.LoginActivity;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -32,10 +33,14 @@ public class StartActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (applicationService.FirstTime()){
-                intent.setClass(getApplicationContext(), MainActivity.class);
-            }else {
-                intent.setClass(getApplicationContext(),GuideActivity.class);
+            //判断是否第一次进入软件和登录
+            if (applicationService.FirstTime()) {
+                if (applicationService.FirstLogin()) {
+                    intent.setClass(getApplicationContext(), MainActivity.class);
+                }
+                intent.setClass(getApplicationContext(), LoginActivity.class);
+            } else {
+                intent.setClass(getApplicationContext(), GuideActivity.class);
             }
             startActivity(intent);
             System.out.println("线程结束!");

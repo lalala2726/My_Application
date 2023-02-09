@@ -24,4 +24,10 @@ public interface ApplicationService {
      */
     boolean saveConfig(String ip, String port);
 
+
+    /**
+     * 判断用户是否登录
+     */
+    boolean FirstLogin();
+
 }

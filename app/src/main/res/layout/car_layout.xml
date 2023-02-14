@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.function.StopCarActivity">
+
+
+    <TextView
+        android:id="@+id/c_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停车标题"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <TextView
+        android:id="@+id/information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:text="详情"
+        app:layout_constraintStart_toStartOf="@+id/c_title"
+        app:layout_constraintTop_toBottomOf="@+id/c_title" />
+
+    <TextView
+        android:id="@+id/distanc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="248dp"
+        android:text="100KM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.504" />
+
+    <Button
+        android:id="@+id/icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/baseline_navigation_24"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/distanc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/distanc"
+        app:layout_constraintTop_toTopOf="@+id/distanc"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <TextView
+        android:id="@+id/car_surplus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="剩余"
+        android:textSize="13dp"
+        app:layout_constraintStart_toStartOf="@+id/information"
+        app:layout_constraintTop_toBottomOf="@+id/information" />
+
+    <TextView
+        android:id="@+id/surplus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/car_surplus"
+        app:layout_constraintStart_toEndOf="@+id/car_surplus"
+        app:layout_constraintTop_toTopOf="@+id/car_surplus"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/c_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:text="金额"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/car_surplus"
+        app:layout_constraintStart_toEndOf="@+id/surplus"
+        app:layout_constraintTop_toTopOf="@+id/car_surplus" />
+
+    <TextView
+        android:id="@+id/c_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="100"
+        android:textColor="@color/black"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/c_amount"
+        app:layout_constraintStart_toEndOf="@+id/c_amount"
+        app:layout_constraintTop_toTopOf="@+id/c_amount"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="时"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/c_time"
+        app:layout_constraintStart_toEndOf="@+id/c_time"
+        app:layout_constraintTop_toTopOf="@+id/c_time"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

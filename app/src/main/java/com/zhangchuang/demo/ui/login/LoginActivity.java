@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.network.UserNetwork;
+import com.zhangchuang.demo.ui.function.StopCarActivity;
 import com.zhangchuang.demo.utils.NetworkUtils;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), MainActivity.class);
+                intent.setClass(LoginActivity.this, StopCarActivity.class);
                 startActivity(intent);
             }
         });

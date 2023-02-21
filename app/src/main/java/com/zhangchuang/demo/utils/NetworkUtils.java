@@ -21,8 +21,11 @@ import okhttp3.Response;
 public class NetworkUtils {
 
 
+    private String data = null;
+
     /**
      * 异步GET请求
+     *
      * @param url
      * @param json
      * @return
@@ -53,6 +56,7 @@ public class NetworkUtils {
 
     /**
      * 异步POST请求
+     *
      * @param url
      * @param json
      * @return
@@ -77,11 +81,12 @@ public class NetworkUtils {
                 @Override
                 public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                     System.out.println("POST请求执行成功！");
-                    message.obj = response.body().string();
+                    data = response.body().string();
+                    System.out.println(data);
                 }
             });
         }).start();
-        return null;
+        return data;
     }
 
 

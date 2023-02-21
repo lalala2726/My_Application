@@ -16,7 +16,7 @@ public class UserNetwork {
                 "    \"username\": \"lalala\",\n" +
                 "    \"password\": \"123456\"\n" +
                 "}";
-//        String data = networkUtils1.postOkHttp("http://124.93.196.45:10001/prod-api/api/login", json);
-//        System.out.println(data);
+        String data = networkUtils.asyncPOST("http://124.93.196.45:10001/prod-api/api/login", json);
+        System.out.println(data);
     }
 }

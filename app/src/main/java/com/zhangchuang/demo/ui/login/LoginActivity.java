@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, StopCarActivity.class);
+                intent.setClass(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

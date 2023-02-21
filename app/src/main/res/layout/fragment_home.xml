@@ -208,7 +208,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="功能测试"
             android:textColor="@color/black"
             android:textSize="10dp"
             app:layout_constraintEnd_toEndOf="@+id/button12"

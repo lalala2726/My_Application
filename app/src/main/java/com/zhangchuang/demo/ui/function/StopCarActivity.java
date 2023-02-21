@@ -39,9 +39,10 @@ public class StopCarActivity extends AppCompatActivity {
 
 
     /**
-     * 初始化数据
+     * 初始化数据加载数据
      */
     private void initInfo() {
+
         titleData.add("西安停车场");
         titleData.add("兴庆南路停车场");
         titleData.add("延兴路停车场");
@@ -94,6 +95,7 @@ public class StopCarActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
+            System.out.println("你点击--->" + position);
             return 0;
         }
 

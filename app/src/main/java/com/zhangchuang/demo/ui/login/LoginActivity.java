@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        System.out.println("请登录");
         init();
     }
 
@@ -126,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param userInfo 用户JSON
      */
     public void networkLogin(String userInfo) {
+        ApplicationServiceImpl applicationService1 = new ApplicationServiceImpl(getApplicationContext());
         OnRetrofit();
         UserService userService = mRetrofit.create(UserService.class);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), userInfo);
@@ -139,6 +141,8 @@ public class LoginActivity extends AppCompatActivity {
                     boolean isFlag = saveToken(getApplicationContext(), json);
                     Intent intent = new Intent();
                     if (isFlag) {
+                        //将用户登录成功的信息写入配置文件下次将无需登录
+                        applicationService1.saveLogin(true);
                         intent.setClass(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     }

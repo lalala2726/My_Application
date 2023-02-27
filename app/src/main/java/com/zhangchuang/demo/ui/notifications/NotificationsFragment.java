@@ -33,7 +33,12 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        initUserInfo();
         return view;
+    }
+
+    private void initUserInfo() {
+        System.out.println("初始化用户信息~~~");
     }
 
     @Override

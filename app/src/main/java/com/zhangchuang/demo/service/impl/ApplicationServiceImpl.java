@@ -70,11 +70,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         SharedPreferences application = context.getSharedPreferences("Application", Context.MODE_PRIVATE);
         String ip = application.getString("IP", null);
         String port = application.getString("Port", null);
-        return "http://" + ip + ":"+ port;
+        return "http://" + ip + ":" + port;
     }
 
     /**
-     * 判断用户是否登录
+     * 判断用户是否登录,如果用登录过为true，没有登录过是false
      *
      * @return
      */
@@ -83,6 +83,27 @@ public class ApplicationServiceImpl implements ApplicationService {
         SharedPreferences application = context.getSharedPreferences("Application", Context.MODE_PRIVATE);
         boolean aBoolean = application.getBoolean("Application", false);
         return aBoolean;
+    }
+
+
+    /**
+     * 读取token信息
+     *
+     * @return 返回Token信息
+     */
+    public String readToken() {
+        SharedPreferences application = context.getSharedPreferences("application", Context.MODE_PRIVATE);
+        return application.getString("Token", null);
+    }
+
+    /**
+     * 保存用户登录信息
+     */
+    public void saveLogin(Boolean info) {
+        SharedPreferences application = context.getSharedPreferences("Application", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = application.edit();
+        SharedPreferences.Editor editor = edit.putBoolean("Application", info);
+        edit.commit();
     }
 
 

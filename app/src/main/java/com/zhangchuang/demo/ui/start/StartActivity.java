@@ -2,6 +2,7 @@ package com.zhangchuang.demo.ui.start;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class StartActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+
     public void init() {
         Intent intent = new Intent();
         ApplicationServiceImpl applicationService = new ApplicationServiceImpl(getApplicationContext());
@@ -33,16 +35,23 @@ public class StartActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //判断是否第一次进入软件和登录
+
+            //判断是否配置过信息
             if (applicationService.FirstTime()) {
+                Log.e(MEDIA_PROJECTION_SERVICE,"是否配置过信息-->" + applicationService.FirstLogin());
+                //判断是否登录过
                 if (applicationService.FirstLogin()) {
+                    Log.e(MEDIA_PROJECTION_SERVICE,"是否登录过-->" + applicationService.FirstLogin());
                     intent.setClass(getApplicationContext(), MainActivity.class);
+                } else {
+                    intent.setClass(getApplicationContext(), LoginActivity.class);
                 }
-                intent.setClass(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             } else {
+                //未配置信息
                 intent.setClass(getApplicationContext(), GuideActivity.class);
+                startActivity(intent);
             }
-            startActivity(intent);
             System.out.println("线程结束!");
 
         }).start();

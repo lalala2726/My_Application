@@ -1,6 +1,7 @@
 package com.zhangchuang.demo.ui.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +13,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.entity.User;
 import com.zhangchuang.demo.network.RetrofitHelper;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 import com.zhangchuang.demo.utils.NetworkUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -55,11 +60,11 @@ public class LoginActivity extends AppCompatActivity {
                 String userText = username.getText().toString();
                 String pwsText = password.getText().toString();
                 if (username.length() == 0) {
-                    Toast.makeText(getApplicationContext(),"请输入账号!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "请输入账号!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (pwsText.length() == 0) {
-                    Toast.makeText(getApplicationContext(),"请输入密码!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "请输入密码!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Gson gson = new Gson();
@@ -74,23 +79,42 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * 保存Token信息
+     *
      * @param context 上下文信息
-     * @param token 需要保存的Token信息
+     * @param json    需要传递的JSON信息
      */
-    public void saveToken(Context context,String token){
+    public boolean saveToken(Context context, String json) {
+        JSONObject jsonObject = null;
+        int code = 0;
+        String meg = null;
+        try {
+            jsonObject = new JSONObject(json);
+            code = jsonObject.getInt("code");
+            meg = jsonObject.getString("msg");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (code != 200) {
+            Toast.makeText(getApplicationContext(), meg, Toast.LENGTH_SHORT).show();
+            Log.e(MEDIA_PROJECTION_SERVICE, "JSON数据解析失败！");
+            return false;
+        }
+        String token = jsonObject.optString("token");
         SharedPreferences application = context.getSharedPreferences("Application", MODE_PRIVATE);
         SharedPreferences.Editor edit = application.edit();
-        edit.putString("token",token);
+        edit.putString("token", token);
+        return true;
     }
 
 
     /**
      * 读取网络配置信息并初始化
      */
-    public void OnRetrofit(){
+    public void OnRetrofit() {
         ApplicationServiceImpl applicationService1 = new ApplicationServiceImpl(getApplicationContext());
         String networkInfo = applicationService1.readNetworkInfo();
-        Log.v(MEDIA_PROJECTION_SERVICE,"网络配置信息--->" + networkInfo);
+        Log.v(MEDIA_PROJECTION_SERVICE, "网络配置信息--->" + networkInfo);
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(networkInfo)
                 .build();
@@ -98,18 +122,26 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * 执行网络登录
+     *
      * @param userInfo 用户JSON
      */
-    public void networkLogin(String userInfo){
+    public void networkLogin(String userInfo) {
         OnRetrofit();
         UserService userService = mRetrofit.create(UserService.class);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),userInfo);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), userInfo);
         Call<ResponseBody> login = userService.login(requestBody);
         login.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    Log.v(MEDIA_PROJECTION_SERVICE,"POST回调成功!" + response.body().string());
+                    String json = response.body().string();
+                    Log.v(MEDIA_PROJECTION_SERVICE, "POST回调成功!" + json);
+                    boolean isFlag = saveToken(getApplicationContext(), json);
+                    Intent intent = new Intent();
+                    if (isFlag) {
+                        intent.setClass(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -117,10 +149,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                Log.e(MEDIA_PROJECTION_SERVICE,"POST回调失败！\n错误信息--->" + throwable);
+                Log.e(MEDIA_PROJECTION_SERVICE, "POST回调失败！\n错误信息--->" + throwable);
             }
         });
     }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

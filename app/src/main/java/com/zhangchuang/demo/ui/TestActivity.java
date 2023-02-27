@@ -8,9 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
-import com.zhangchuang.demo.network.UserNetwork;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
-import com.zhangchuang.demo.ui.start.EditConfigActivity;
 import com.zhangchuang.demo.utils.ToastUtil;
 
 public class TestActivity extends AppCompatActivity {
@@ -49,9 +47,6 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("你点了按钮");
-                UserNetwork userNetwork = new UserNetwork();
-                userNetwork.testNetwork();
             }
         });
     }

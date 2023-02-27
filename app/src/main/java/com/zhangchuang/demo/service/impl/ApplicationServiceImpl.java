@@ -60,8 +60,22 @@ public class ApplicationServiceImpl implements ApplicationService {
         return false;
     }
 
+
+    /**
+     * 读取网络配置信息
+     *
+     * @return
+     */
+    public String readNetworkInfo() {
+        SharedPreferences application = context.getSharedPreferences("Application", Context.MODE_PRIVATE);
+        String ip = application.getString("IP", null);
+        String port = application.getString("Port", null);
+        return "http://" + ip + ":"+ port;
+    }
+
     /**
      * 判断用户是否登录
+     *
      * @return
      */
     @Override

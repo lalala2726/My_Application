@@ -12,11 +12,19 @@ public class ToastUtil {
     private Context context = null;
 
 
+    /**
+     * 上下文信息
+     * @param context
+     */
     public ToastUtil(Context context) {
         this.context = context;
     }
 
-    public void displayMas(String msg) {
-        Toast.makeText(context,msg,Toast.LENGTH_LONG).show();
+    /**
+     * 显示文本信息
+     * @param Mes
+     */
+    public void displayMes(String Mes) {
+        Toast.makeText(context,Mes,Toast.LENGTH_LONG).show();
     }
 }

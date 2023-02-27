@@ -12,6 +12,7 @@ import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 import com.zhangchuang.demo.ui.home.HomeFragment;
+import com.zhangchuang.demo.ui.login.LoginActivity;
 import com.zhangchuang.demo.utils.ToastUtil;
 
 public class EditConfigActivity extends AppCompatActivity {
@@ -42,17 +43,17 @@ public class EditConfigActivity extends AppCompatActivity {
                 String port = viewById1.getText().toString();
                 System.out.println("ip = " + ip);
                 if ("".equals(ip) || "".equals(port)) {
-                    toastUtil.displayMas("请填写完整！");
+                    toastUtil.displayMes("请填写完整！");
                     return;
                 }
                 if (applicationService.saveConfig(ip, port)) {
 
-                    toastUtil.displayMas("保存成功！");
+                    toastUtil.displayMes("保存成功！");
                     Intent intent = new Intent();
-                    intent.setClass(getApplicationContext(), MainActivity.class);
+                    intent.setClass(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 } else {
-                    toastUtil.displayMas("保存失败！请重启设备或重新安装软件！");
+                    toastUtil.displayMes("保存失败！请重启设备或重新安装软件！");
                 }
             }
         });

@@ -60,7 +60,16 @@ public class NotificationsFragment extends Fragment {
         view.findViewById(R.id.rela_34).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),UpdatePasswordActivity.class);
+                Intent intent = new Intent(getContext(), UpdatePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //跳转至意见反馈
+        view.findViewById(R.id.rela_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FeedbackActivity.class);
                 startActivity(intent);
             }
         });

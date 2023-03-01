@@ -47,37 +47,37 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_password);
         init();
-       findViewById(R.id.update_password).setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               String old = oldPassword.getText().toString();
-               String newPws = newPassword.getText().toString();
-               String Password = updatePassword.getText().toString();
-               if (old.length() == 0){
-                   Toast.makeText(getApplicationContext(),"请输入旧密码",Toast.LENGTH_SHORT);
-                   return;
-               }
-               if (newPws.length() == 0){
-                   Toast.makeText(getApplicationContext(),"请输入新密码",Toast.LENGTH_SHORT);
-                   return;
-               }
-               if (Password.length() == 0){
-                   Toast.makeText(getApplicationContext(),"请输入确定密码",Toast.LENGTH_SHORT);
-                   return;
-               }
-               if (Password.equals(updatePassword.getText().toString())){
-                   Log.e("Warning!","两次密码不一致！");
-                   Toast.makeText(getApplicationContext(),"两次密码不一致！",Toast.LENGTH_SHORT);
-                   return;
-               }
-               entityPassword.setNewPassword(newPws);
-               entityPassword.setOldPassword(old);
-               Gson gson = new Gson();
+        findViewById(R.id.update_password).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String old = oldPassword.getText().toString();
+                String newPws = newPassword.getText().toString();
+                String Password = updatePassword.getText().toString();
+                if (old.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "请输入旧密码", Toast.LENGTH_SHORT);
+                    return;
+                }
+                if (newPws.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "请输入新密码", Toast.LENGTH_SHORT);
+                    return;
+                }
+                if (Password.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "请输入确定密码", Toast.LENGTH_SHORT);
+                    return;
+                }
+                if (Password.equals(updatePassword.getText().toString())) {
+                    Log.e("Warning!", "两次密码不一致！");
+                    Toast.makeText(getApplicationContext(), "两次密码不一致！", Toast.LENGTH_SHORT);
+                    return;
+                }
+                entityPassword.setNewPassword(newPws);
+                entityPassword.setOldPassword(old);
+                Gson gson = new Gson();
 
-               String json = gson.toJson(UpdatePassword.class);
-               updatePasswordByNetwork(json);
-           }
-       });
+                String json = gson.toJson(UpdatePassword.class);
+                updatePasswordByNetwork(json);
+            }
+        });
     }
 
     /**
@@ -86,7 +86,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     public void init() {
         entityPassword = new UpdatePassword();
         oldPassword = findViewById(R.id.old_password_view);
-        newPassword =  findViewById(R.id.new_password_view);
+        newPassword = findViewById(R.id.new_password_view);
         updatePassword = findViewById(R.id.determine_password);
         setTitle("修改你的密码");
         applicationService = new ApplicationServiceImpl(getApplicationContext());
@@ -134,6 +134,11 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 验证结果
+     *
+     * @param json
+     */
     public void JsonInfo(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -141,9 +146,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             if (code == 200) {
                 String msg = jsonObject.getString("msg");
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
-                return;
-            }
-            if (code != 200) {
+            } else {
                 String msg = jsonObject.getString("msg");
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
                 return;

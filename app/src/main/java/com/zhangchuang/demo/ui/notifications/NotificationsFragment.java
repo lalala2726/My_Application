@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.databinding.FragmentNotificationsBinding;
+import com.zhangchuang.demo.entity.UpdatePassword;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 
@@ -51,6 +52,15 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), UserinfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //跳转至修改密码
+        view.findViewById(R.id.rela_34).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),UpdatePasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -119,8 +129,7 @@ public class NotificationsFragment extends Fragment {
     }
 
 
-
-    public void setUserInfo(String json){
+    public void setUserInfo(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
             String username = jsonObject.getString("username");

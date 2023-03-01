@@ -2,8 +2,11 @@ package com.zhangchuang.demo.ui.notifications;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.icu.text.CaseMap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -33,21 +36,60 @@ public class UpdatePasswordActivity extends AppCompatActivity {
 
     private static final String LOCAL_SERVER_ADDRESS = "";
 
+    private EditText oldPassword;
+    private EditText newPassword;
+    private EditText updatePassword;
+
+    private UpdatePassword entityPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_password);
         init();
+       findViewById(R.id.update_password).setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               String old = oldPassword.getText().toString();
+               String newPws = newPassword.getText().toString();
+               String Password = updatePassword.getText().toString();
+               if (old.length() == 0){
+                   Toast.makeText(getApplicationContext(),"请输入旧密码",Toast.LENGTH_SHORT);
+                   return;
+               }
+               if (newPws.length() == 0){
+                   Toast.makeText(getApplicationContext(),"请输入新密码",Toast.LENGTH_SHORT);
+                   return;
+               }
+               if (Password.length() == 0){
+                   Toast.makeText(getApplicationContext(),"请输入确定密码",Toast.LENGTH_SHORT);
+                   return;
+               }
+               if (Password.equals(updatePassword.getText().toString())){
+                   Log.e("Warning!","两次密码不一致！");
+                   Toast.makeText(getApplicationContext(),"两次密码不一致！",Toast.LENGTH_SHORT);
+                   return;
+               }
+               entityPassword.setNewPassword(newPws);
+               entityPassword.setOldPassword(old);
+               Gson gson = new Gson();
+
+               String json = gson.toJson(UpdatePassword.class);
+               updatePasswordByNetwork(json);
+           }
+       });
     }
 
     /**
      * 初始化
      */
     public void init() {
+        entityPassword = new UpdatePassword();
+        oldPassword = findViewById(R.id.old_password_view);
+        newPassword =  findViewById(R.id.new_password_view);
+        updatePassword = findViewById(R.id.determine_password);
+        setTitle("修改你的密码");
         applicationService = new ApplicationServiceImpl(getApplicationContext());
-        Gson gson = new Gson();
-        String jsonInfo = gson.toJson(UpdatePassword.class);
-        updatePasswordByNetwork(jsonInfo);
     }
 
     /**

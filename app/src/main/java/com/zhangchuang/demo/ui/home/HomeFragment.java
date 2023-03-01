@@ -17,6 +17,7 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.zhangchuang.demo.R;
+import com.zhangchuang.demo.entity.UpdatePassword;
 import com.zhangchuang.demo.ui.TestActivity;
 import com.zhangchuang.demo.ui.function.StopCarActivity;
 import com.zhangchuang.demo.utils.MyLoader;
@@ -93,6 +94,7 @@ public class HomeFragment extends Fragment {
                 title.setText(titles[position]);
                 viewById.setImageResource(icons[position]);
             }
+
             return view;
         }
     }

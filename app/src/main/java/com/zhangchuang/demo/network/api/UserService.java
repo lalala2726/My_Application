@@ -7,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * 用户相关接口
@@ -19,19 +20,33 @@ public interface UserService {
 
     /**
      * 用户登录
+     *
      * @param body
      * @return
      */
     @POST("/prod-api/api/login")
-    retrofit2.Call<ResponseBody> login(@Body RequestBody body);
+    Call<ResponseBody> login(@Body RequestBody body);
 
 
     /**
      * 获取用户信息
+     *
      * @param token
      * @return
      */
-    @GET("/prod-api/api/common/user/getInfo")
-    Call getUserInfo(@Header("Authorization") String token);
+//    @GET("/prod-api/api/common/user/getInfo")
+//    Call<ResponseBody> getUserInfo(@Header("Authorization") String token);
+    @GET("/getUserInfo")
+    Call<ResponseBody> getUserInfo(@Query("id") Integer id);
 
+
+    /**
+     * 修改密码
+     *
+     * @param token
+     * @param body
+     * @return
+     */
+    @POST("/prod-api/api/common/user/resetPwd")
+    Call<ResponseBody> updatePassword(@Header("Authorization") String token, @Body RequestBody body);
 }

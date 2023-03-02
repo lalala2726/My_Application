@@ -7,7 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.PUT;
 
 /**
  * 用户相关接口
@@ -34,10 +34,10 @@ public interface UserService {
      * @param token
      * @return
      */
-//    @GET("/prod-api/api/common/user/getInfo")
-//    Call<ResponseBody> getUserInfo(@Header("Authorization") String token);
-    @GET("/getUserInfo")
-    Call<ResponseBody> getUserInfo(@Query("id") Integer id);
+    @GET("/prod-api/api/common/user/getInfo")
+    Call<ResponseBody> getUserInfo(@Header("Authorization") String token);
+//    @GET("/getUserInfo")
+//    Call<ResponseBody> getUserInfo(@Query("id") Integer id);
 
 
     /**
@@ -47,6 +47,6 @@ public interface UserService {
      * @param body
      * @return
      */
-    @POST("/prod-api/api/common/user/resetPwd")
+    @PUT("/prod-api/api/common/user/resetPwd")
     Call<ResponseBody> updatePassword(@Header("Authorization") String token, @Body RequestBody body);
 }

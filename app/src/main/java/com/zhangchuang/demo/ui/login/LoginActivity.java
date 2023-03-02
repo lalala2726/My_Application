@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.zhangchuang.demo.MainActivity;
 import com.zhangchuang.demo.R;
-import com.zhangchuang.demo.entity.User;
+import com.zhangchuang.demo.entity.UserLogin;
 import com.zhangchuang.demo.network.RetrofitHelper;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Toast.makeText(getApplicationContext(), "请登录", Toast.LENGTH_SHORT).show();
         System.out.println("请登录");
         init();
     }
@@ -69,8 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 Gson gson = new Gson();
-                User user = new User(userText, pwsText);
-                String userInfoJson = gson.toJson(user);
+                UserLogin userLogin = new UserLogin(userText, pwsText);
+                String userInfoJson = gson.toJson(userLogin);
                 System.out.println("输出的信息--->" + userInfoJson);
                 networkLogin(userInfoJson);
             }
@@ -105,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences application = context.getSharedPreferences("Application", MODE_PRIVATE);
         SharedPreferences.Editor edit = application.edit();
         edit.putString("token", token);
+        edit.commit();
         return true;
     }
 

@@ -9,6 +9,11 @@ public class UpdatePassword {
     private String newPassword;
 
 
+    public UpdatePassword(String oldPassword, String newPassword) {
+        this.oldPassword = oldPassword;
+        this.newPassword = newPassword;
+    }
+
     public String getOldPassword() {
         return oldPassword;
     }

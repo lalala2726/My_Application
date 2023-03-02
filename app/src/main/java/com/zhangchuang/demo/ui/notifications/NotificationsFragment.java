@@ -19,6 +19,7 @@ import com.zhangchuang.demo.databinding.FragmentNotificationsBinding;
 import com.zhangchuang.demo.entity.UpdatePassword;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
+import com.zhangchuang.demo.ui.login.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,8 +74,15 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        view.findViewById(R.id.rela_7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         initUserInfo();
-        init(view);
+//        init(view);
         return view;
     }
 
@@ -91,33 +99,34 @@ public class NotificationsFragment extends Fragment {
     /**
      * 系统初始化
      */
-    public void init(View v) {
+/*    public void init(View v) {
         applicationService = new ApplicationServiceImpl(getContext());
         userNameView = v.findViewById(R.id.textView16);
         getUserInfoByNetwork();
-    }
+    }*/
 
     /**
      * 初始化Retrofit
      */
-    public void initRetrofit() {
+/*    public void initRetrofit() {
         //读取配置文件信息
         String networkInfo = applicationService.readNetworkInfo();
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(LOCAL_SERVER_ADDRESS)
+                .baseUrl(networkInfo)
                 .build();
-    }
+    }*/
 
 
     /**
      * 通过网络获取用户信息
      */
-    public void getUserInfoByNetwork() {
+   /* public void getUserInfoByNetwork() {
         initRetrofit();
         //读取token信息
         String token = applicationService.readToken();
         UserService userService = mRetrofit.create(UserService.class);
-        Call<ResponseBody> userInfo = userService.getUserInfo(10);
+        Call<ResponseBody> userInfo = userService.getUserInfo(token);
+        Log.e("System","Token信息--->" + token);
         userInfo.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -141,10 +150,10 @@ public class NotificationsFragment extends Fragment {
     public void setUserInfo(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
-            String username = jsonObject.getString("username");
+            String username = jsonObject.getString("userName");
             userNameView.setText(username);
         } catch (JSONException e) {
-            throw new RuntimeException(e);
+            Log.e("Warning", "加载用户信息到View失败！");
         }
-    }
+    }*/
 }

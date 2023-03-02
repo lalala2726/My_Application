@@ -44,7 +44,7 @@ public class StartActivity extends AppCompatActivity {
                     Log.e(MEDIA_PROJECTION_SERVICE,"是否登录过-->" + applicationService.FirstLogin());
                     intent.setClass(getApplicationContext(), MainActivity.class);
                 } else {
-                    intent.setClass(getApplicationContext(), MainActivity.class);
+                    intent.setClass(getApplicationContext(), LoginActivity.class);
                 }
                 startActivity(intent);
             } else {

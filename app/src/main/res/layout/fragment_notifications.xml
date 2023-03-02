@@ -111,4 +111,22 @@
             android:textSize="20dp"></TextView>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rela_7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/rela_6"
+        android:layout_marginTop="1dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/black"
+            android:textSize="20dp"></TextView>
+    </RelativeLayout>
+
 </RelativeLayout>

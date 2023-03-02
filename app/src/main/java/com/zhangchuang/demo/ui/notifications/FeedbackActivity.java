@@ -42,7 +42,7 @@ public class FeedbackActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String text = editText.getText().toString();
                 String title = title_view.getText().toString();
-                if (title.length() == 0){
+                if (title.length() == 0) {
                     Toast.makeText(getApplicationContext(), "请填写您的主题", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -50,11 +50,10 @@ public class FeedbackActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "请填写您的意见！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Feedback feedback = new Feedback();
-                feedback.setTitle(title);
-                feedback.setContent(text);
+                Feedback feedback = new Feedback(text, title);
                 Gson gson = new Gson();
-                String json = gson.toJson(Feedback.class);
+                String json = gson.toJson(feedback);
+                Log.e("INFO", "转换的JSON类型--->" + json);
                 feedbackByNetwork(json);
             }
         });
@@ -86,6 +85,8 @@ public class FeedbackActivity extends AppCompatActivity {
      */
     public void feedbackByNetwork(String json) {
         initRetrofit();
+        //读取Token信息
+        String token = applicationService.readToken();
         SystemService systemService = mRetrofit.create(SystemService.class);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
         Call<ResponseBody> feedback = systemService.feedback(null, requestBody);

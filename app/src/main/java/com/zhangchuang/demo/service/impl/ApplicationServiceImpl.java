@@ -92,8 +92,8 @@ public class ApplicationServiceImpl implements ApplicationService {
      * @return 返回Token信息
      */
     public String readToken() {
-        SharedPreferences application = context.getSharedPreferences("application", Context.MODE_PRIVATE);
-        return application.getString("Token", null);
+        SharedPreferences application = context.getSharedPreferences("Application", Context.MODE_PRIVATE);
+        return application.getString("token", null);
     }
 
     /**

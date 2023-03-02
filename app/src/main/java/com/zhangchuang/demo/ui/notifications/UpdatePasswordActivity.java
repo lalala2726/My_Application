@@ -1,19 +1,20 @@
 package com.zhangchuang.demo.ui.notifications;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.icu.text.CaseMap;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.entity.UpdatePassword;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
+import com.zhangchuang.demo.ui.login.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +41,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     private EditText newPassword;
     private EditText updatePassword;
 
-    private UpdatePassword entityPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +54,26 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                 String newPws = newPassword.getText().toString();
                 String Password = updatePassword.getText().toString();
                 if (old.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "请输入旧密码", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "请输入旧密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (newPws.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "请输入新密码", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "请输入新密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (Password.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "请输入确定密码", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "请输入确定密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (Password.equals(updatePassword.getText().toString())) {
+                if (Password.equals(updatePassword)) {
                     Log.e("Warning!", "两次密码不一致！");
-                    Toast.makeText(getApplicationContext(), "两次密码不一致！", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "两次密码不一致！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                entityPassword.setNewPassword(newPws);
-                entityPassword.setOldPassword(old);
                 Gson gson = new Gson();
-
-                String json = gson.toJson(UpdatePassword.class);
+                UpdatePassword updatePassword1 = new UpdatePassword(old, newPws);
+                String json = gson.toJson(updatePassword1);
+                System.out.println("JSON转换的JSON数据-->" + json);
                 updatePasswordByNetwork(json);
             }
         });
@@ -84,7 +83,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
      * 初始化
      */
     public void init() {
-        entityPassword = new UpdatePassword();
         oldPassword = findViewById(R.id.old_password_view);
         newPassword = findViewById(R.id.new_password_view);
         updatePassword = findViewById(R.id.determine_password);
@@ -145,10 +143,20 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             int code = jsonObject.getInt("code");
             if (code == 200) {
                 String msg = jsonObject.getString("msg");
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                new Thread(()->{
+                    try {
+                        Thread.sleep(1000 * 3);
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }).start();
             } else {
                 String msg = jsonObject.getString("msg");
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 return;
             }
         } catch (JSONException e) {

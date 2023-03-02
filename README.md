@@ -1,2 +1,2 @@
 # My_Application
-Android比赛
+Android开发测试，慢慢测试功能

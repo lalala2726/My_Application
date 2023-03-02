@@ -14,6 +14,9 @@ import com.zhangchuang.demo.entity.Feedback;
 import com.zhangchuang.demo.network.api.SystemService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -87,16 +90,19 @@ public class FeedbackActivity extends AppCompatActivity {
         initRetrofit();
         //读取Token信息
         String token = applicationService.readToken();
+        Log.e("INFO", "token信息--->" + token);
         SystemService systemService = mRetrofit.create(SystemService.class);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
-        Call<ResponseBody> feedback = systemService.feedback(null, requestBody);
+        Call<ResponseBody> feedback = systemService.feedback(token, requestBody);
         feedback.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    Log.e("SUCCESS", "POST回调成功！返回参数-->" + response.body().string());
+                    String json = response.body().string();
+                    Log.e("SUCCESS", "POST回调成功！返回参数-->" + json);
+                    AnalysisInfo(json);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("系统异常！");
                 }
             }
 
@@ -105,5 +111,23 @@ public class FeedbackActivity extends AppCompatActivity {
                 Log.e("ERROR", "POST回调失败！错误信息--->" + throwable);
             }
         });
+    }
+
+    /**
+     * 解析响应请求
+     */
+    public void AnalysisInfo(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            int code = jsonObject.getInt("code");
+            String msg = jsonObject.getString("msg");
+            if (code == 200) {
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            System.out.println("系统异常！");
+        }
     }
 }

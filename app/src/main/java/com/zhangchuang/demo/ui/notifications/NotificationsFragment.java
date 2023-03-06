@@ -14,9 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.gson.Gson;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.databinding.FragmentNotificationsBinding;
 import com.zhangchuang.demo.entity.UpdatePassword;
+import com.zhangchuang.demo.entity.User;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 import com.zhangchuang.demo.ui.login.LoginActivity;
@@ -81,13 +83,15 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        initUserInfo();
-//        init(view);
+        initUserInfo(view);
         return view;
     }
 
-    private void initUserInfo() {
+    private void initUserInfo(View v) {
+        userNameView = v.findViewById(R.id.textView16);
         System.out.println("初始化用户信息~~~");
+        initInfo();
+        getUserInfoBuNetWork();
     }
 
     @Override
@@ -96,44 +100,39 @@ public class NotificationsFragment extends Fragment {
         binding = null;
     }
 
+
     /**
-     * 系统初始化
+     * 预加载信息
      */
-/*    public void init(View v) {
+    public void initInfo() {
         applicationService = new ApplicationServiceImpl(getContext());
-        userNameView = v.findViewById(R.id.textView16);
-        getUserInfoByNetwork();
-    }*/
+    }
 
     /**
-     * 初始化Retrofit
+     * 预加载Retrofit
      */
-/*    public void initRetrofit() {
-        //读取配置文件信息
-        String networkInfo = applicationService.readNetworkInfo();
+    public void initRetrofit() {
+        String readNetworkInfo = applicationService.readNetworkInfo();
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(networkInfo)
+                .baseUrl(readNetworkInfo)
                 .build();
-    }*/
+    }
 
-
-    /**
-     * 通过网络获取用户信息
-     */
-   /* public void getUserInfoByNetwork() {
+    public void getUserInfoBuNetWork() {
         initRetrofit();
-        //读取token信息
+        Log.e("Msg", "正在加载网络信息");
         String token = applicationService.readToken();
         UserService userService = mRetrofit.create(UserService.class);
+        userService.getUserInfo(token);
         Call<ResponseBody> userInfo = userService.getUserInfo(token);
-        Log.e("System","Token信息--->" + token);
         userInfo.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     String json = response.body().string();
-                    Log.i("SUCCESS", "执行成功!返回信息-->" + json);
-                    setUserInfo(json);
+
+                    Log.e("SUCCESS", "返回的原始信息:" + json);
+                    JsonToUser(json);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -141,19 +140,34 @@ public class NotificationsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                Log.e("网络信息", "网络执行失败!\n错误信息--->" + throwable);
+
             }
         });
     }
 
-
-    public void setUserInfo(String json) {
+    /**
+     * 将JSON数据转Java实体类
+     *
+     * @param json 需要传输的JSON数据
+     */
+    public void JsonToUser(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
-            String username = jsonObject.getString("userName");
-            userNameView.setText(username);
+            int code = jsonObject.getInt("code");
+            if (code == 200) {
+                String user = jsonObject.getString("user");
+                Gson gson = new Gson();
+                User user1 = gson.fromJson(user, User.class);
+                System.out.println("二次清洗信息:" + user1);
+                //显示用户信息
+                userNameView.setText(user1.getUserName());
+            } else {
+                Log.e("ERROR", "用户信息获取失败！");
+            }
         } catch (JSONException e) {
-            Log.e("Warning", "加载用户信息到View失败！");
+            throw new RuntimeException(e);
         }
-    }*/
+    }
+
+
 }

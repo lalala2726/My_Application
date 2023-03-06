@@ -18,6 +18,9 @@ import com.zhangchuang.demo.entity.User;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.ResponseBody;
@@ -51,78 +54,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
         //隐藏标题栏
         getSupportActionBar().hide();
-        initInfo();
-        //不影响主线程加载信息
-        new Thread(() -> {
-            getUserInfoBuNetWork();
-        }).start();
     }
 
 
-    /**
-     * 预加载信息
-     */
-    public void initInfo() {
-        applicationService = new ApplicationServiceImpl(getApplicationContext());
-    }
-
-    /**
-     * 预加载Retrofit
-     */
-    public void initRetrofit() {
-        String readNetworkInfo = applicationService.readNetworkInfo();
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(readNetworkInfo)
-                .build();
-    }
-
-    public void getUserInfoBuNetWork() {
-        initRetrofit();
-        Log.e("Msg", "正在加载网络信息");
-        String token = applicationService.readToken();
-        UserService userService = mRetrofit.create(UserService.class);
-        userService.getUserInfo(token);
-        Call<ResponseBody> userInfo = userService.getUserInfo(token);
-        userInfo.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    String json = response.body().string();
-
-                    Log.e("SUCCESS", "返回的信息" + json);
-
-                    Gson gson = new Gson();
-                    gson.toJson(json);
-                    User user = new User();
-                    System.out.println("获取的信息-->" + user.getEmail());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-
-            }
-        });
-       /* Call<Data<User>> userInfo = userService.getUserInfo(token);
-        userInfo.enqueue(new Callback<Data<User>>() {
-            @Override
-            public void onResponse(Call<Data<User>> call, Response<Data<User>> response) {
-
-                Data<User> body = response.body();
-                if (body == null) return;
-                User user = body.getData();
-                if (user == null) return;
-                Log.e("SUCCESS", "返回的信息-->" + "code:" + body.getCode() + "msg" + body.getMsg() + "Data" + user);
-            }
-
-            @Override
-            public void onFailure(Call<Data<User>> call, Throwable throwable) {
-
-            }
-        });*/
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -46,11 +46,14 @@ public class NotificationsFragment extends Fragment {
 
     private static final String LOCAL_SERVER_ADDRESS = "http://192.168.43.139:8080";
 
+    private String userInfo = null;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notifications, container, false);
         View userInfo = view.findViewById(R.id.rela_2);
+        //跳转到用户信息
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +79,7 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        //退出登陆
         view.findViewById(R.id.rela_7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

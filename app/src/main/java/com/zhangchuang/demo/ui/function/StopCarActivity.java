@@ -3,6 +3,7 @@ package com.zhangchuang.demo.ui.function;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,122 +11,132 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zhangchuang.demo.R;
+import com.zhangchuang.demo.network.api.SystemService;
+import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class StopCarActivity extends AppCompatActivity {
 
 
-    //    private String[] titleData = {"商城停车场"};
-    List titleData = new ArrayList<String>();
-    List informationData = new ArrayList<String>();
-    List distancData = new ArrayList<String>();
-    List surplusData = new ArrayList<String>();
-    List timeData = new ArrayList<String>();
+    private Retrofit mRetrofit;
+
+    private ApplicationServiceImpl applicationService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopcar);
 
+        initView();
+        new Thread(() -> {
+            getInfoByNetwork();
+        }).start();
+    }
+
+    /**
+     * 预加载View等信息
+     */
+    public void initView() {
         //隐藏标题栏
         getSupportActionBar().hide();
-        initInfo();
-        ListView carListView = findViewById(R.id.car_ListView);
-        CarAdapter carAdapter = new CarAdapter();
-        carListView.setAdapter(carAdapter);
+        applicationService = new ApplicationServiceImpl(getApplicationContext());
     }
 
 
     /**
-     * 初始化数据加载数据
+     * 预加载网络框架的基本信息
      */
-    private void initInfo() {
-
-        titleData.add("西安停车场");
-        titleData.add("兴庆南路停车场");
-        titleData.add("延兴路停车场");
-        titleData.add("祥宁路停车场");
-        titleData.add("东莞路停车场");
-        titleData.add("商城停车场");
-
-
-        informationData.add("兴庆南路北");
-        informationData.add("兴庆南路南");
-        informationData.add("延兴路北");
-        informationData.add("祥宁路北");
-        informationData.add("东莞路北");
-        informationData.add("商城地下车库");
-        distancData.add("10M");
-        distancData.add("120M");
-        distancData.add("800M");
-        distancData.add("1200M");
-        distancData.add("200M");
-        distancData.add("205M");
-
-        surplusData.add("100");
-        surplusData.add("88");
-        surplusData.add("52");
-        surplusData.add("69");
-        surplusData.add("20");
-        surplusData.add("85");
-
-        timeData.add("2");
-        timeData.add("5");
-        timeData.add("3");
-        timeData.add("3");
-        timeData.add("3");
-        timeData.add("10");
-
+    private void initInfoByNetwork() {
+        //读取网络配置的基本信息
+        String networkInfo = applicationService.readNetworkInfo();
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(networkInfo)
+                .build();
     }
 
+    /**
+     * 通过网络获取基本的信息
+     */
+    public void getInfoByNetwork() {
+        //预先加载网络框架
+        initInfoByNetwork();
+        //读取Token信息
+        String token = applicationService.readToken();
+
+        SystemService systemService = mRetrofit.create(SystemService.class);
+        Call<ResponseBody> parkingList = systemService.getParkingList(token);
+        parkingList.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String string = response.body().string();
+                    Log.e("SUCCESS", "获取的参数--->" + string);
+                    JSONObject jsonObject = new JSONObject(string);
+                    int code = jsonObject.getInt("code");
+                    String jsonList = jsonObject.getString("rows");
+                    if (code == 200) {
+                        finishingJson(jsonList);
+                        return;
+                    }
+                    Log.e("ERROR", "JSON数据异常!解析失败！");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                Log.e("ERROR", "错误信息--->" + throwable);
+            }
+        });
+    }
+
+
+    private void finishingJson(String json) {
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private class CarAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return titleData.size();
+            return 0;
         }
 
         @Override
         public Object getItem(int position) {
-            return titleData.get(position);
+            return null;
         }
 
         @Override
         public long getItemId(int position) {
-            System.out.println("你点击--->" + position);
             return 0;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View view = View.inflate(StopCarActivity.this, R.layout.car_layout, null);
-
-            //使用数组测试
-//            TextView title = view.findViewById(R.id.c_title);
-//            title.setText(titleData[position]);
-
-            //使用List测试
-            TextView title = view.findViewById(R.id.c_title);
-            title.setText(titleData.get(position).toString());
-
-            TextView information = view.findViewById(R.id.information);
-            information.setText(informationData.get(position).toString());
-
-            TextView distance = view.findViewById(R.id.distanc);
-            distance.setText(distancData.get(position).toString());
-
-            TextView surplus = view.findViewById(R.id.surplus);
-            surplus.setText(surplusData.get(position).toString());
-
-            TextView time = view.findViewById(R.id.c_time);
-            time.setText(timeData.get(position).toString());
-
-
-
-            return view;
+            return null;
         }
     }
+
 }

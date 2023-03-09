@@ -22,4 +22,9 @@
         android:name="com.zhangchuang.demo.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/partyActivity"
+        android:name="com.zhangchuang.demo.ui.party.PartyActivity"
+        android:label="党建"
+        tools:layout="@layout/activity_party" />
 </navigation>

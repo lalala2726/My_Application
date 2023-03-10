@@ -1,6 +1,5 @@
 package com.zhangchuang.demo.ui.home;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +17,6 @@ import com.youth.banner.Transformer;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.network.api.SystemService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
-import com.zhangchuang.demo.ui.TestActivity;
-import com.zhangchuang.demo.ui.function.StopCarActivity;
 import com.zhangchuang.demo.utils.MyLoader;
 
 import org.json.JSONArray;
@@ -52,27 +49,6 @@ public class HomeFragment extends Fragment {
         banner = view.findViewById(R.id.vv_banner);
         initView(view);
         getAdImageByNetwork();
-
-        //跳转至停车场页面
-        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), StopCarActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //跳转至功能测试
-        view.findViewById(R.id.button12).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), TestActivity.class);
-                startActivity(intent);
-            }
-        });
-
         return view;
     }
 

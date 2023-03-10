@@ -30,9 +30,19 @@ public interface SystemService {
 
     /**
      * 获取停车场列表
+     *
      * @param token 令牌
      * @return
      */
     @GET("/prod-api/api/park/lot/list")
     Call<ResponseBody> getParkingList(@Header("Authorization") String token);
+
+
+    /**
+     * 获取首页广告
+     *
+     * @return
+     */
+    @GET("/prod-api/api/rotation/list")
+    Call<ResponseBody> getADList();
 }

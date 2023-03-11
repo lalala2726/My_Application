@@ -13,9 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".PartyActivity"
-            android:exported="false" />
+        <activity android:name=".ui.function.NewsInfoActivity" />
         <activity android:name=".ui.notifications.FeedbackActivity" />
         <activity android:name=".ui.function.StopCarActivity" />
         <activity android:name=".ui.notifications.UpdatePasswordActivity" />

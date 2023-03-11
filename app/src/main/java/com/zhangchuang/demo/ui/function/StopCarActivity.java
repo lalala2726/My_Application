@@ -1,6 +1,5 @@
 package com.zhangchuang.demo.ui.function;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zhangchuang.demo.R;
@@ -159,16 +157,6 @@ public class StopCarActivity extends AppCompatActivity {
         for (int i = 0; i < list.size(); i++) {
             JSONObject jsonObject = list.get(i);
             try {
-               /* String parkName = jsonObject.getString("parkName");
-                System.out.println("停车场名称-->" + parkName);
-                String address = jsonObject.getString("address");
-                System.out.println("详细信息-->" + address);
-                String vacancy = jsonObject.getString("vacancy");
-                System.out.println("剩余车位-->" + vacancy);
-                String distance = jsonObject.getString("distance");
-                System.out.println("距离-->" + distance);
-                String rates = jsonObject.getString("rates");
-                System.out.println("价格-->" + rates);*/
                 parkName.add(jsonObject.getString("parkName"));
                 address.add(jsonObject.getString("address"));
                 vacancy.add(jsonObject.getString("vacancy"));

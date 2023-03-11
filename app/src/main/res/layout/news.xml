@@ -6,23 +6,43 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/news_title"
-                android:layout_width="match_parent"
+            <LinearLayout
                 android:layout_height="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingTop="2dp"
-                android:text="显示新闻的标题"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:layout_width="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/news_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="2dp"
+                    android:text="显示新闻的标题"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/news_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:text="详情信息" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -37,15 +57,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/news_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="新闻的来源信息" />
-    </LinearLayout>
 </LinearLayout>

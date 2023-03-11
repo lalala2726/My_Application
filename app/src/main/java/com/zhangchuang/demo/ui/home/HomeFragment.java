@@ -1,22 +1,29 @@
 package com.zhangchuang.demo.ui.home;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.network.api.SystemService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
+import com.zhangchuang.demo.ui.function.NewsInfoActivity;
 import com.zhangchuang.demo.utils.MyLoader;
 
 import org.json.JSONArray;
@@ -41,7 +48,16 @@ public class HomeFragment extends Fragment {
 
     private ApplicationServiceImpl applicationService;
 
+    //首页轮播图资源
     private List images;
+
+    //新闻相关的资源
+    private List newsTitles;
+    private List newsImages;
+    private List newsPublishDate;
+
+    private List newsContent;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +66,13 @@ public class HomeFragment extends Fragment {
         initView(view);
         getAdImageByNetwork();
         newsInfo();
+        view.findViewById(R.id.parking).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NewsInfoActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -161,6 +184,20 @@ public class HomeFragment extends Fragment {
      */
     public void newsInfo() {
         getNewsInfoByNetwork();
+        newsPublishDate = new ArrayList();
+        newsImages = new ArrayList();
+        newsTitles = new ArrayList();
+        newsContent = new ArrayList();
+
+    }
+
+    /**
+     * 新闻列表
+     */
+    public void initListView() {
+        ListView listView = getView().findViewById(R.id.news_listview);
+        NewsAdapter newsAdapter = new NewsAdapter();
+        listView.setAdapter(newsAdapter);
     }
 
     /**
@@ -202,6 +239,7 @@ public class HomeFragment extends Fragment {
      * @param json
      */
     public void newsParseJsonToArrayList(String json) {
+        String networkInfo = applicationService.readNetworkInfo();
         //将JSON数据转ArrayList集合
         ArrayList list = new ArrayList();
         try {
@@ -214,11 +252,59 @@ public class HomeFragment extends Fragment {
             throw new RuntimeException(e);
         }
 
-
+        //数据清理
+        for (int i = 0; i < list.size(); i++) {
+            JSONObject jsonObject = (JSONObject) list.get(i);
+            try {
+                newsTitles.add(jsonObject.getString("title"));
+                newsImages.add(networkInfo + jsonObject.getString("cover"));
+                newsPublishDate.add(jsonObject.getString("publishDate"));
+                newsContent.add(jsonObject.getString("content"));
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             list.forEach(System.out::println);
         }
 
+        //加载列表
+        initListView();
+
+    }
+
+    public class NewsAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return newsTitles.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return newsTitles.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = View.inflate(getContext(), R.layout.news, null);
+
+            TextView title = view.findViewById(R.id.news_title);
+            title.setText(newsTitles.get(position).toString());
+
+            TextView info = view.findViewById(R.id.news_info);
+            info.setText(newsPublishDate.get(position).toString());
+
+            ImageView imageView = view.findViewById(R.id.news_images);
+            //设置图片
+            Glide.with(getContext()).load(newsImages.get(position).toString()).into(imageView);
+            return view;
+        }
     }
 
 

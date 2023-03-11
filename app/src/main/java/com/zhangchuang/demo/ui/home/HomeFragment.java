@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
         banner = view.findViewById(R.id.vv_banner);
         initView(view);
         getAdImageByNetwork();
+        newsInfo();
         return view;
     }
 
@@ -117,6 +118,7 @@ public class HomeFragment extends Fragment {
     }
 
     /**
+     * 首页轮播图相关
      * 将JSON数据转arrayList
      */
     public void parseJsonToArrayList(String json) {
@@ -151,6 +153,72 @@ public class HomeFragment extends Fragment {
             list.forEach(System.out::println);
         }
         initBanner();
+    }
+
+
+    /**
+     * 新闻相关模块
+     */
+    public void newsInfo() {
+        getNewsInfoByNetwork();
+    }
+
+    /**
+     * 通过网络获取新闻信息
+     */
+    public void getNewsInfoByNetwork() {
+        initRetrofit();
+        SystemService systemService = mRetrofit.create(SystemService.class);
+        Call<ResponseBody> newsInfo = systemService.getNewsInfo();
+        newsInfo.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String string = response.body().string();
+                    JSONObject jsonObject = new JSONObject(string);
+                    int code = jsonObject.getInt("code");
+                    if (code == 200) {
+                        String rows = jsonObject.getString("rows");
+                        newsParseJsonToArrayList(rows);
+                    }
+                } catch (IOException e) {
+                    Log.e("Exception", "IOException--->" + e);
+                } catch (JSONException e) {
+                    Log.e("Exception", "JSONException--->" + e);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                Log.e("ERROR", "获取失败！错误信息-->" + throwable);
+            }
+        });
+    }
+
+
+    /**
+     * 将JSON数据转化成ArrayList集合
+     *
+     * @param json
+     */
+    public void newsParseJsonToArrayList(String json) {
+        //将JSON数据转ArrayList集合
+        ArrayList list = new ArrayList();
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                list.add(jsonObject);
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            list.forEach(System.out::println);
+        }
+
     }
 
 

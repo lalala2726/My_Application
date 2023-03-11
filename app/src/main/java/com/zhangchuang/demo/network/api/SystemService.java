@@ -45,4 +45,13 @@ public interface SystemService {
      */
     @GET("/prod-api/api/rotation/list")
     Call<ResponseBody> getADList();
+
+
+    /**
+     * 获取新闻信息
+     *
+     * @return
+     */
+    @GET("/prod-api/press/press/list")
+    Call<ResponseBody> getNewsInfo();
 }

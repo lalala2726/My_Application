@@ -7,17 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.Gson;
 import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.databinding.FragmentNotificationsBinding;
-import com.zhangchuang.demo.entity.UpdatePassword;
 import com.zhangchuang.demo.entity.User;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
@@ -25,7 +22,6 @@ import com.zhangchuang.demo.ui.login.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -165,8 +161,13 @@ public class NotificationsFragment extends Fragment {
                 System.out.println("二次清洗信息:" + user1);
                 //显示用户信息
                 userNameView.setText(user1.getUserName());
+            } else if (code == 401) {
+                Toast.makeText(getContext(), "请重新登陆！", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
             } else {
                 Log.e("ERROR", "用户信息获取失败！");
+
             }
         } catch (JSONException e) {
             throw new RuntimeException(e);

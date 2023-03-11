@@ -31,7 +31,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/parking"></Button>
+                android:background="@drawable/parking" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/subway"></Button>
+                android:background="@drawable/subway" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/movie"></Button>
+                android:background="@drawable/movie" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/bus"></Button>
+                android:background="@drawable/bus" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/traffic"></Button>
+                android:background="@drawable/traffic" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/house"></Button>
+                android:background="@drawable/house" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/live"></Button>
+                android:background="@drawable/live" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -171,7 +171,7 @@
             <Button
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/hospital"></Button>
+                android:background="@drawable/hospital" />
 
             <TextView
                 android:layout_width="wrap_content"

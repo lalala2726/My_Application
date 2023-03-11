@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -66,13 +67,6 @@ public class HomeFragment extends Fragment {
         initView(view);
         getAdImageByNetwork();
         newsInfo();
-        view.findViewById(R.id.parking).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), NewsInfoActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 
@@ -198,6 +192,15 @@ public class HomeFragment extends Fragment {
         ListView listView = getView().findViewById(R.id.news_listview);
         NewsAdapter newsAdapter = new NewsAdapter();
         listView.setAdapter(newsAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), NewsInfoActivity.class);
+                intent.putExtra("newsContent", newsContent.get((int) position).toString());
+                intent.putExtra("newsTitle", newsTitles.get((int) position).toString());
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -287,6 +290,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public long getItemId(int position) {
+            Log.e("SUCCESS", "获取到的ID-->" + position);
             return 0;
         }
 

@@ -25,6 +25,7 @@ import com.zhangchuang.demo.R;
 import com.zhangchuang.demo.network.api.SystemService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 import com.zhangchuang.demo.ui.function.NewsInfoActivity;
+import com.zhangchuang.demo.ui.function.StopCarActivity;
 import com.zhangchuang.demo.utils.MyLoader;
 
 import org.json.JSONArray;
@@ -76,6 +77,13 @@ public class HomeFragment extends Fragment {
      * @param v
      */
     public void initView(View v) {
+        v.findViewById(R.id.parking).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), StopCarActivity.class);
+                startActivity(intent);
+            }
+        });
         applicationService = new ApplicationServiceImpl(getContext());
         images = new ArrayList();
     }

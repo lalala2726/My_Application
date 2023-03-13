@@ -21,4 +21,7 @@ public interface LiveService {
     Call<ResponseBody> getAds();
 
 
+    @GET("/prod-api/api/living/press/press/list")
+    Call<ResponseBody> getNewsAndInfo();
+
 }

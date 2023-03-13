@@ -34,6 +34,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -275,6 +276,8 @@ public class HomeFragment extends Fragment {
                 throw new RuntimeException(e);
             }
         }
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             list.forEach(System.out::println);
         }

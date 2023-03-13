@@ -8,15 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:paddingLeft="10dp"
+            android:paddingLeft="5dp"
             android:layout_weight="1"
             android:gravity="center|left"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="80dp">
             <ImageView
+                android:src="@drawable/default_head"
                 android:id="@+id/user_images"
-                android:layout_width="80dp"
-                android:layout_height="80dp"/>
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
 
             <TextView
                 android:id="@+id/user_name"
@@ -49,6 +50,87 @@
         android:background="@color/white_10"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
+    <!--昵称-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/black"
+                android:text="昵称"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:paddingRight="10dp"
+            android:gravity="center|right"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/user_nick_name"
+                android:text="显示的昵称"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/white_10"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <!--性别-->
+    <!--邮箱-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/black"
+                android:text="性别"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:paddingRight="10dp"
+            android:gravity="center|right"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/user_gender"
+                android:text="未知"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/white_10"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
     <!--邮箱-->
     <LinearLayout
         android:orientation="horizontal"
@@ -157,86 +239,6 @@
             <TextView
                 android:id="@+id/user_account"
                 android:text="未设置"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:background="@color/white_10"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-    <!--昵称-->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <LinearLayout
-            android:paddingLeft="10dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/black"
-                android:text="昵称"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:paddingRight="10dp"
-            android:gravity="center|right"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/user_nick_name"
-                android:text="显示的电话号码"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-    <!--性别-->
-    <!--邮箱-->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <LinearLayout
-            android:paddingLeft="10dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/black"
-                android:text="性别"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:paddingRight="10dp"
-            android:gravity="center|right"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/user_gender"
-                android:text="未知"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <ImageView

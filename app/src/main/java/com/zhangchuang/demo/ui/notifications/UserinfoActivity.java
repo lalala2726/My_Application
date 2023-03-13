@@ -44,6 +44,7 @@ public class UserinfoActivity extends AppCompatActivity {
      */
     public void initInfo() {
         applicationService = new ApplicationServiceImpl(getApplicationContext());
+        setTitle("个人资料");
     }
 
     /**
@@ -138,6 +139,9 @@ public class UserinfoActivity extends AppCompatActivity {
         }
         TextView account = findViewById(R.id.user_account);
         account.setText(user.getUserId());
+        //显示昵称
+        TextView nickName = findViewById(R.id.user_nick_name);
+        nickName.setText(user.getNickName());
 
 
     }

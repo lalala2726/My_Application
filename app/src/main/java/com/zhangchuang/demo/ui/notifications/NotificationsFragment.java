@@ -79,6 +79,7 @@ public class NotificationsFragment extends Fragment {
         view.findViewById(R.id.rela_7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                applicationService.saveLogin(false);
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             }

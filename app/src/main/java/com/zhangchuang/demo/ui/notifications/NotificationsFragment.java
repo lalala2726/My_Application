@@ -18,6 +18,7 @@ import com.zhangchuang.demo.databinding.FragmentNotificationsBinding;
 import com.zhangchuang.demo.entity.User;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
+import com.zhangchuang.demo.ui.function.OrderActivity;
 import com.zhangchuang.demo.ui.login.LoginActivity;
 
 import org.json.JSONException;
@@ -82,6 +83,13 @@ public class NotificationsFragment extends Fragment {
             public void onClick(View v) {
                 applicationService.saveLogin(false);
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.user_order).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), OrderActivity.class);
                 startActivity(intent);
             }
         });

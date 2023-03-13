@@ -7,5 +7,5 @@
     <com.youth.banner.Banner
         android:id="@+id/view_banner"
         android:layout_width="match_parent"
-        android:layout_height="230dp"></com.youth.banner.Banner>
+        android:layout_height="200dp"></com.youth.banner.Banner>
 </LinearLayout>

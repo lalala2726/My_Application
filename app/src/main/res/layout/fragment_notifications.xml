@@ -1,132 +1,171 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white_10"
-    android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rela_1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:gravity="center" >
+        android:layout_height="100dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/account" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:gravity="center|left"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/user_nick_name"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="昵称"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/user_account"
+                android:paddingTop="5dp"
+                android:text="账号"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/white_10"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <LinearLayout
+        android:id="@+id/user_info"
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:gravity="center|left"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.228"
-            app:srcCompat="@drawable/ic_baseline_account_circle_24" />
-
+            android:src="@drawable/personal_info"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
         <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="用户名称"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <RelativeLayout
-        android:id="@+id/rela_2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/rela_1"
-        android:background="@color/white">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
-            android:text="个人信息"
+            android:paddingLeft="10dp"
             android:textColor="@color/black"
-            android:textSize="20dp"></TextView>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rela_34"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/rela_2"
-        android:layout_marginTop="1dp"
-        android:background="@color/white">
-
-        <TextView
+            android:textSize="18sp"
+            android:text="个人资料"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <!--我的订单-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <LinearLayout
+        android:id="@+id/user_order"
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:gravity="center|left"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:src="@drawable/order"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="我的订单"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <!--修改密码-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/user_update_password"
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:gravity="center|left"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:src="@drawable/password"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:text="修改密码"
-            android:textColor="@color/black"
-            android:textSize="20dp"></TextView>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rela_4"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/rela_34"
-        android:layout_marginTop="1dp"
-        android:background="@color/white">
-
-        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
-            android:text="订单列表"
-            android:textColor="@color/black"
-            android:textSize="20dp"></TextView>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rela_6"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <!--意见反馈-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/rela_4"
-        android:layout_marginTop="1dp"
-        android:background="@color/white">
-
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/user_feedback"
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:gravity="center|left"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:src="@drawable/opinions1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:text="意见反馈"
-            android:textColor="@color/black"
-            android:textSize="20dp"></TextView>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rela_7"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/rela_6"
-        android:layout_marginTop="1dp"
-        android:background="@color/white">
-
-        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center"
-            android:text="退出登录"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <!--退出登录-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/user_log_out"
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:gravity="center|left"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:src="@drawable/logout"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:paddingLeft="10dp"
             android:textColor="@color/black"
-            android:textSize="20dp"></TextView>
-    </RelativeLayout>
+            android:textSize="18sp"
+            android:text="退出登录"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-</RelativeLayout>
+
+
+
+</LinearLayout>

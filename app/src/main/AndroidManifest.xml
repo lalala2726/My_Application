@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".OrderActivity"
+            android:exported="false" />
         <activity android:name=".ui.function.NewsInfoActivity" />
         <activity android:name=".ui.notifications.FeedbackActivity" />
         <activity android:name=".ui.function.StopCarActivity" />

@@ -36,8 +36,6 @@ public interface UserService {
      */
     @GET("/prod-api/api/common/user/getInfo")
     Call<ResponseBody> getUserInfo(@Header("Authorization") String token);
-//    @GET("/getUserInfo")
-//    Call<ResponseBody> getUserInfo(@Query("id") Integer id);
 
 
     /**

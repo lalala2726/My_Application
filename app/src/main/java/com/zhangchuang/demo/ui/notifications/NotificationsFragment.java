@@ -86,10 +86,19 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        //跳转到我的订单
         view.findViewById(R.id.user_order).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), OrderActivity.class);
+                startActivity(intent);
+            }
+        });
+        //跳转到我的钱包
+        view.findViewById(R.id.user_wallet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WalletActivity.class);
                 startActivity(intent);
             }
         });

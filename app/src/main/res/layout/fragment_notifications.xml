@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white_10"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:background="@color/white"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,148 +25,190 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:gravity="center|left"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
             <TextView
                 android:id="@+id/user_nick_name"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:text="昵称"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="昵称"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/user_account"
-                android:paddingTop="5dp"
-                android:text="账号"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="账号" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:background="@color/white_10"
         android:layout_width="match_parent"
-        android:layout_height="10dp"/>
+        android:layout_height="10dp"
+        android:background="@color/white_10" />
+
     <LinearLayout
         android:id="@+id/user_info"
-        android:background="@color/white"
-        android:paddingLeft="20dp"
-        android:gravity="center|left"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
         <ImageView
-            android:src="@drawable/personal_info"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:src="@drawable/personal_info" />
+
         <TextView
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="个人资料"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="个人资料"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <!--电子钱包-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:id="@+id/user_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/wallet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="钱包"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
     </LinearLayout>
     <!--我的订单-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"/>
+        android:layout_height="10dp" />
+
     <LinearLayout
         android:id="@+id/user_order"
-        android:background="@color/white"
-        android:paddingLeft="20dp"
-        android:gravity="center|left"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
         <ImageView
-            android:src="@drawable/order"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:src="@drawable/order" />
+
         <TextView
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="我的订单"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="我的订单"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
     </LinearLayout>
     <!--修改密码-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp" />
+
     <LinearLayout
         android:id="@+id/user_update_password"
-        android:background="@color/white"
-        android:paddingLeft="20dp"
-        android:gravity="center|left"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
         <ImageView
-            android:src="@drawable/password"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:src="@drawable/password" />
+
         <TextView
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="修改密码"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="修改密码"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
     </LinearLayout>
     <!--意见反馈-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp" />
+
     <LinearLayout
         android:id="@+id/user_feedback"
-        android:background="@color/white"
-        android:paddingLeft="20dp"
-        android:gravity="center|left"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
         <ImageView
-            android:src="@drawable/opinions1"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:src="@drawable/opinions1" />
+
         <TextView
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="意见反馈"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="意见反馈"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
     </LinearLayout>
     <!--退出登录-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"/>
+        android:layout_height="10dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp" />
+
     <LinearLayout
         android:id="@+id/user_log_out"
-        android:background="@color/white"
-        android:paddingLeft="20dp"
-        android:gravity="center|left"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
         <ImageView
-            android:src="@drawable/logout"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:src="@drawable/logout" />
+
         <TextView
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="退出登录"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="退出登录"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
     </LinearLayout>
-
-
 
 
 </LinearLayout>

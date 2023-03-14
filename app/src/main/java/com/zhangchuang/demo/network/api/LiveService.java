@@ -43,4 +43,11 @@ public interface LiveService {
     @POST("/prod-api/api/living/feedback")
     Call<ResponseBody> submitLiveFeedBack(@Header("Authorization") String token,@Body RequestBody body);
 
+    /**
+     * 获取天气信息
+     * @return
+     */
+    @GET("/prod-api/api/living/weather")
+    Call<ResponseBody> getWeatherInfo();
+
 }

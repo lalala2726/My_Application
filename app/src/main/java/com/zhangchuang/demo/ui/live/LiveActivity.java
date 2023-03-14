@@ -103,6 +103,13 @@ public class LiveActivity extends Fragment {
                 startActivity(intent);
             }
         });
+        v.findViewById(R.id.live_weather).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WeatherActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void setBanner() {

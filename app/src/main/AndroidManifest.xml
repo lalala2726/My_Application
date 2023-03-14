@@ -14,6 +14,7 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.live.FeedBackActivity" />
+        <activity android:name=".ui.live.WeatherActivity" />
         <activity android:name=".ui.function.OrderActivity" />
         <activity android:name=".ui.function.NewsInfoActivity" />
         <activity android:name=".ui.notifications.FeedbackActivity" />

@@ -21,8 +21,7 @@ public class EditConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editconfig);
-        //隐藏标题栏
-        getSupportActionBar().hide();
+        setTitle("配置信息");
         init();
     }
 
@@ -32,13 +31,13 @@ public class EditConfigActivity extends AppCompatActivity {
     }
 
     public void init() {
-        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.config_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ApplicationServiceImpl applicationService = new ApplicationServiceImpl(getApplicationContext());
                 ToastUtil toastUtil = new ToastUtil(getApplicationContext());
-                EditText viewById = findViewById(R.id.editTextNumber);
-                EditText viewById1 = findViewById(R.id.editTextNumber2);
+                EditText viewById = findViewById(R.id.config_ip);
+                EditText viewById1 = findViewById(R.id.config_port);
                 String ip = viewById.getText().toString();
                 String port = viewById1.getText().toString();
                 System.out.println("ip = " + ip);

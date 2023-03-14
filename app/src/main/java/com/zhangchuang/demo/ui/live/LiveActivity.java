@@ -86,12 +86,20 @@ public class LiveActivity extends Fragment {
         images = new ArrayList();
         applicationService = new ApplicationServiceImpl(getContext());
         listView = v.findViewById(R.id.live_listview);
+        //新闻资讯跳转至详情
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), NewsInfoActivity.class);
                 intent.putExtra("newsContent", newsContent.get((int) position).toString());
                 intent.putExtra("newsTitle", newsTitle.get((int) position).toString());
+                startActivity(intent);
+            }
+        });
+        v.findViewById(R.id.live_feedback_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FeedBackActivity.class);
                 startActivity(intent);
             }
         });
@@ -185,10 +193,11 @@ public class LiveActivity extends Fragment {
     /**
      * 加载新闻列表
      */
-    public void newsListView(){
+    public void newsListView() {
         NewsAdapter newsAdapter = new NewsAdapter();
         listView.setAdapter(newsAdapter);
     }
+
     /**
      * 轮播图
      * <p>
@@ -265,7 +274,7 @@ public class LiveActivity extends Fragment {
     }
 
 
-    private class NewsAdapter extends BaseAdapter{
+    private class NewsAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {

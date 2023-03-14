@@ -95,6 +95,24 @@
                 android:layout_height="wrap_content"
                 android:text="话费充值" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/live_feedback_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/feedback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="意见反馈" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

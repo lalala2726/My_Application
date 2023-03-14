@@ -26,6 +26,7 @@ import com.zhangchuang.demo.network.api.SystemService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
 import com.zhangchuang.demo.ui.function.NewsInfoActivity;
 import com.zhangchuang.demo.ui.function.StopCarActivity;
+import com.zhangchuang.demo.ui.live.LiveActivity;
 import com.zhangchuang.demo.utils.MyLoader;
 
 import org.json.JSONArray;
@@ -78,11 +79,18 @@ public class HomeFragment extends Fragment {
      * @param v
      */
     public void initView(View v) {
+        //跳转到停车界面
         v.findViewById(R.id.parking).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), StopCarActivity.class);
                 startActivity(intent);
+            }
+        });
+        v.findViewById(R.id.button_live).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转到LiveActivity
             }
         });
         applicationService = new ApplicationServiceImpl(getContext());
@@ -198,7 +206,8 @@ public class HomeFragment extends Fragment {
      * 新闻列表
      */
     public void initListView() {
-        ListView listView = getView().findViewById(R.id.news_listview);
+        ListView listView = null;
+        listView = getView().findViewById(R.id.news_listview);
         NewsAdapter newsAdapter = new NewsAdapter();
         listView.setAdapter(newsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -234,6 +243,8 @@ public class HomeFragment extends Fragment {
                     Log.e("Exception", "IOException--->" + e);
                 } catch (JSONException e) {
                     Log.e("Exception", "JSONException--->" + e);
+                } catch (NullPointerException e) {
+                    Log.e("NULL", "对象为空！-->" + e);
                 }
             }
 
@@ -283,7 +294,11 @@ public class HomeFragment extends Fragment {
         }
 
         //加载列表
-        initListView();
+        try {
+            initListView();
+        } catch (NullPointerException e) {
+            Log.e(getContext().toString(), "空对象!");
+        }
 
     }
 

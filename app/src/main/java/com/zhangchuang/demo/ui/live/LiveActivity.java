@@ -110,6 +110,14 @@ public class LiveActivity extends Fragment {
                 startActivity(intent);
             }
         });
+        //跳转至话费充值
+        v.findViewById(R.id.live_telephone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), TelephoneFeeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void setBanner() {

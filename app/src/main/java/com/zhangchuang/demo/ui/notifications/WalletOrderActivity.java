@@ -55,6 +55,7 @@ public class WalletOrderActivity extends AppCompatActivity {
      * 初始化View
      */
     public void initView() {
+        setTitle("零钱明细");
         applicationService = new ApplicationServiceImpl(getApplicationContext());
         changeTime = new ArrayList();
         changeType = new ArrayList();

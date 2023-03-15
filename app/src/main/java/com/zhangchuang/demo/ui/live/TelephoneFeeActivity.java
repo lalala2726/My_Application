@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.zhangchuang.demo.R;
+import com.zhangchuang.demo.databinding.TelephoneFeeOrderMain2Binding;
 import com.zhangchuang.demo.entity.PhoneRecharge;
 
 public class TelephoneFeeActivity extends AppCompatActivity {
@@ -43,9 +44,22 @@ public class TelephoneFeeActivity extends AppCompatActivity {
                 getTelephoneInfo();
             }
         });
+
+        //跳转到订单订单列表
+        findViewById(R.id.query_bill).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TelephoneFeeOrderActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
+    /**
+     * 初始化
+     */
     public void initView() {
+        setTitle("话费充值");
         TelephoneAmount();
         telephone = findViewById(R.id.telephone_edit);
         telephoneInfo = findViewById(R.id.telephone_info);
@@ -59,7 +73,7 @@ public class TelephoneFeeActivity extends AppCompatActivity {
             PhoneRecharge phoneRecharge = new PhoneRecharge("电子支付", telephoneNumber, amount, "1", "2");
             Gson gson = new Gson();
             String json = gson.toJson(phoneRecharge);
-            Intent intent = new Intent(getApplicationContext(),PayActivity.class);
+            Intent intent = new Intent(getApplicationContext(), PayActivity.class);
             //意图传递
             String payName = "为" + telephoneNumber + "充值话费";
             intent.putExtra("json", json);
@@ -83,42 +97,42 @@ public class TelephoneFeeActivity extends AppCompatActivity {
         findViewById(R.id.amount_30).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                telephoneInfo.setText("你将为充值30元");
+                telephoneInfo.setText("你将充值30元");
                 amount = "30";
             }
         });
         findViewById(R.id.amount_50).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                telephoneInfo.setText("你将为充值50元");
+                telephoneInfo.setText("你将充值50元");
                 amount = "50";
             }
         });
         findViewById(R.id.amount_100).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                telephoneInfo.setText("你将为充值100元");
+                telephoneInfo.setText("你将充值100元");
                 amount = "100";
             }
         });
         findViewById(R.id.amount_200).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                telephoneInfo.setText("你将为充值200元");
+                telephoneInfo.setText("你将充值200元");
                 amount = "200";
             }
         });
         findViewById(R.id.amount_300).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                telephoneInfo.setText("你将为充值300元");
+                telephoneInfo.setText("你将充值300元");
                 amount = "300";
             }
         });
         findViewById(R.id.amount_500).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                telephoneInfo.setText("你将为充值500元");
+                telephoneInfo.setText("你为充值500元");
                 amount = "500";
             }
         });

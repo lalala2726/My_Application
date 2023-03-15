@@ -55,7 +55,24 @@ public interface LiveService {
     Call<ResponseBody> getWeatherInfo();
 
 
+    /**
+     * 通用支付接口
+     *
+     * @param url   传递URL
+     * @param token 令牌信息
+     * @param body  请求体
+     * @return
+     */
     @POST
-    Call<ResponseBody> pay(@Url String url,@Header("Authorization") String token, @Body RequestBody body);
+    Call<ResponseBody> pay(@Url String url, @Header("Authorization") String token, @Body RequestBody body);
+
+    /**
+     * 获取当前用户的所有话费订单
+     *
+     * @param token 令牌
+     * @return
+     */
+    @GET("/prod-api/api/living/phone/record/list")
+    Call<ResponseBody> getTelephoneFeeOrder(@Header("Authorization") String token);
 
 }

@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true">>
+        android:usesCleartextTraffic="true">
         <activity android:name=".ui.live.FeedBackActivity" />
+        <activity android:name=".ui.live.TelephoneFeeOrderActivity" />
         <activity android:name=".ui.live.PayActivity" />
         <activity android:name=".ui.live.TelephoneFeeActivity" />
         <activity android:name=".ui.notifications.WalletOrderActivity" />

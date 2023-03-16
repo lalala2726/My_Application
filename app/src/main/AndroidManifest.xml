@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.live.InputPaymentInfoActivity" />
+        <activity android:name=".ui.live.GetPaymentNumberActivity" />
+        <activity android:name=".ui.live.LivePaymentDetailsActivity" />
         <activity android:name=".ui.live.FeedBackActivity" />
+        <activity android:name=".ui.live.LivePaymentActivity" />
         <activity android:name=".ui.live.TelephoneFeeOrderActivity" />
         <activity android:name=".ui.live.PayActivity" />
         <activity android:name=".ui.live.TelephoneFeeActivity" />

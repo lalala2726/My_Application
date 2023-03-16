@@ -118,6 +118,14 @@ public class LiveActivity extends Fragment {
                 startActivity(intent);
             }
         });
+        //跳转到生活缴费
+        v.findViewById(R.id.live_payment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), LivePaymentActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void setBanner() {

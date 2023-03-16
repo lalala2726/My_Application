@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /**
@@ -74,5 +75,17 @@ public interface LiveService {
      */
     @GET("/prod-api/api/living/phone/record/list")
     Call<ResponseBody> getTelephoneFeeOrder(@Header("Authorization") String token);
+
+
+    /**
+     * 验证用户编号是否存在
+     *
+     * @param token 令牌信息
+     * @return
+     */
+    @GET("/prod-api/api/living/bill")
+    Call<ResponseBody> verificationInfo(@Header("Authorization") String token,
+                                        @Query("paymentNo") String paymentNo,
+                                        @Query("categoryId") String categoryId);
 
 }

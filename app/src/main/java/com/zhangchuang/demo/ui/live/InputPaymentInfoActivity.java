@@ -64,6 +64,7 @@ public class InputPaymentInfoActivity extends AppCompatActivity {
         vPaymentNumber.setText(paymentNumber);
         vPaymentUnit.setText(paymentUnit);
         vBillNumber.setText(billNumber);
+        getSupportActionBar().hide();
 
     }
 

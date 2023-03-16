@@ -88,4 +88,15 @@ public interface LiveService {
                                         @Query("paymentNo") String paymentNo,
                                         @Query("categoryId") String categoryId);
 
+
+    /**
+     * 根据身份证号查询充值ID
+     * @param token
+     * @param categoryId
+     * @param idCard
+     * @return
+     */
+    @GET("/prod-api/api/living/account/list")
+    Call<ResponseBody> queryUserRechargeId(@Header("Authorization") String token, @Query("categoryId") String categoryId,
+                                           @Query("idCard") String idCard);
 }

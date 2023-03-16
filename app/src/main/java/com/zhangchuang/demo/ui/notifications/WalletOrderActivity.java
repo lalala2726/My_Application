@@ -62,7 +62,6 @@ public class WalletOrderActivity extends AppCompatActivity {
         changeAmount = new ArrayList();
         event = new ArrayList();
         orderListView = findViewById(R.id.order_list_view);
-        setTitle("");
 
     }
 

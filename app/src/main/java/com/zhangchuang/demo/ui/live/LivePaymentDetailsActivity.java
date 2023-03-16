@@ -59,13 +59,14 @@ public class LivePaymentDetailsActivity extends AppCompatActivity {
             }
         });
         //获取缴费编号
-        findViewById(R.id.get_payment_number).setOnClickListener(new View.OnClickListener() {
+       /* findViewById(R.id.get_payment_number).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), GetPaymentNumberActivity.class);
+                intent.putExtra("categoryId", categoryId);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     /**
@@ -79,6 +80,13 @@ public class LivePaymentDetailsActivity extends AppCompatActivity {
         applicationService = new ApplicationServiceImpl(getApplicationContext());
         TextView paymentTitle = findViewById(R.id.payment_title);
         paymentTitle.setText(title);
+
+
+        String paymentNo = getIntent().getStringExtra("paymentNo");
+        Log.w("SUCCESS", "信息--->" + paymentNo);
+        if (paymentNo != null) {
+            ePaymentNumber.setText(paymentNo);
+        }
     }
 
     /**

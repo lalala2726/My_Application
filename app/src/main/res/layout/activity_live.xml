@@ -58,24 +58,6 @@
                 android:text="生活缴费" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/live_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/check" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="账单查询" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/live_phone_charge"

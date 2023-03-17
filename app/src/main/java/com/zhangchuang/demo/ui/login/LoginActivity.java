@@ -46,19 +46,33 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toast.makeText(getApplicationContext(), "请登录", Toast.LENGTH_SHORT).show();
+        setTitle("用户登录");
         System.out.println("请登录");
         init();
+        findViewById(R.id.register_account).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "待开发", Toast.LENGTH_SHORT).show();
+            }
+        });
+        
+        findViewById(R.id.forget_password).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "待开发", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void init() {
         NetworkUtils networkUtils = new NetworkUtils();
-        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.enter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e(TELEPHONY_SERVICE, "显示的信息");
                 //获取用户账户信息
-                EditText username = findViewById(R.id.editTextTextPersonName);
-                EditText password = findViewById(R.id.editTextTextPassword);
+                EditText username = findViewById(R.id.user_account);
+                EditText password = findViewById(R.id.user_passowrd);
                 String userText = username.getText().toString();
                 String pwsText = password.getText().toString();
                 if (username.length() == 0) {

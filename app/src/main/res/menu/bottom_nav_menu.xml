@@ -9,7 +9,7 @@
     <item
         android:id="@+id/partyActivity"
         android:icon="@drawable/baseline_sign_language_24"
-        android:title="党建" />
+        android:title="生活" />
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"

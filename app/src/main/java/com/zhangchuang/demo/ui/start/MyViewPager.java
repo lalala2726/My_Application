@@ -1,6 +1,5 @@
 package com.zhangchuang.demo.ui.start;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,6 +21,7 @@ public class MyViewPager extends PagerAdapter {
 
     @Override
     public int getCount() {
+
         return mViewList.size();
     }
 

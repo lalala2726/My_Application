@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/partyActivity"
-        android:name="com.zhangchuang.demo.ui.party.PartyActivity"
+        android:name="com.zhangchuang.demo.ui.live.LiveActivity"
         android:label="党建"
-        tools:layout="@layout/activity_party" />
+        tools:layout="@layout/activity_live" />
 </navigation>

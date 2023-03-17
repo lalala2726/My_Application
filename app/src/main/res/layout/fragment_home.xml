@@ -8,7 +8,7 @@
     <com.youth.banner.Banner
         android:id="@+id/vv_banner"
         android:layout_width="match_parent"
-        android:layout_height="230dp"></com.youth.banner.Banner>
+        android:layout_height="230dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -151,6 +151,7 @@
             android:paddingLeft="10dp">
 
             <Button
+                android:id="@+id/button_live"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/live" />
@@ -180,11 +181,10 @@
                 android:text="门诊预约" />
         </LinearLayout>
     </LinearLayout>
-
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="5dp" />
-
+        android:layout_height="5dp"/>
     <ListView
         android:id="@+id/news_listview"
         android:layout_width="match_parent"

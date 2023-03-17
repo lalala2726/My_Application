@@ -31,7 +31,7 @@ public class StartActivity extends AppCompatActivity {
         new Thread(() -> {
             System.out.println("线程开始");
             try {
-                Thread.sleep(10 * 100 * 3);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

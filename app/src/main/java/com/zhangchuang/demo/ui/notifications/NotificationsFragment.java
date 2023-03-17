@@ -18,6 +18,7 @@ import com.zhangchuang.demo.databinding.FragmentNotificationsBinding;
 import com.zhangchuang.demo.entity.User;
 import com.zhangchuang.demo.network.api.UserService;
 import com.zhangchuang.demo.service.impl.ApplicationServiceImpl;
+import com.zhangchuang.demo.ui.function.OrderActivity;
 import com.zhangchuang.demo.ui.login.LoginActivity;
 
 import org.json.JSONException;
@@ -39,6 +40,7 @@ public class NotificationsFragment extends Fragment {
 
     private TextView userNameView;
     private ApplicationServiceImpl applicationService;
+    private TextView userAccount;
 
     private static final String LOCAL_SERVER_ADDRESS = "http://192.168.43.139:8080";
 
@@ -48,7 +50,7 @@ public class NotificationsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notifications, container, false);
-        View userInfo = view.findViewById(R.id.rela_2);
+        View userInfo = view.findViewById(R.id.user_info);
         //跳转到用户信息
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +61,7 @@ public class NotificationsFragment extends Fragment {
         });
 
         //跳转至修改密码
-        view.findViewById(R.id.rela_34).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.user_update_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), UpdatePasswordActivity.class);
@@ -68,7 +70,7 @@ public class NotificationsFragment extends Fragment {
         });
 
         //跳转至意见反馈
-        view.findViewById(R.id.rela_6).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.user_feedback).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), FeedbackActivity.class);
@@ -76,10 +78,27 @@ public class NotificationsFragment extends Fragment {
             }
         });
         //退出登陆
-        view.findViewById(R.id.rela_7).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.user_log_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                applicationService.saveLogin(false);
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        //跳转到我的订单
+        view.findViewById(R.id.user_order).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), OrderActivity.class);
+                startActivity(intent);
+            }
+        });
+        //跳转到我的钱包
+        view.findViewById(R.id.user_wallet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WalletActivity.class);
                 startActivity(intent);
             }
         });
@@ -88,7 +107,8 @@ public class NotificationsFragment extends Fragment {
     }
 
     private void initUserInfo(View v) {
-        userNameView = v.findViewById(R.id.textView16);
+        userNameView = v.findViewById(R.id.user_nick_name);
+        userAccount = v.findViewById(R.id.user_account);
         System.out.println("初始化用户信息~~~");
         initInfo();
         getUserInfoBuNetWork();
@@ -161,6 +181,7 @@ public class NotificationsFragment extends Fragment {
                 System.out.println("二次清洗信息:" + user1);
                 //显示用户信息
                 userNameView.setText(user1.getUserName());
+                userAccount.setText("用户ID" + user1.getUserId());
             } else if (code == 401) {
                 Toast.makeText(getContext(), "请重新登陆！", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), LoginActivity.class);

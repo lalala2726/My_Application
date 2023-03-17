@@ -36,8 +36,6 @@ public interface UserService {
      */
     @GET("/prod-api/api/common/user/getInfo")
     Call<ResponseBody> getUserInfo(@Header("Authorization") String token);
-//    @GET("/getUserInfo")
-//    Call<ResponseBody> getUserInfo(@Query("id") Integer id);
 
 
     /**
@@ -49,4 +47,13 @@ public interface UserService {
      */
     @PUT("/prod-api/api/common/user/resetPwd")
     Call<ResponseBody> updatePassword(@Header("Authorization") String token, @Body RequestBody body);
+
+    /**
+     * 获取钱包订单信息
+     *
+     * @param token
+     * @return
+     */
+    @GET("/prod-api/api/common/balance/list")
+    Call<ResponseBody> getWalletOrderInfo(@Header("Authorization") String token);
 }

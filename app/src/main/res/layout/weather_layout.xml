@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white_10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/weather_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3月13日昨天"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/weather_images"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/weather_sunny" />
+        </LinearLayout>
+        <!--最高气温-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/weather_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17°"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/weather_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17°"
+                android:textColor="@color/grey"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

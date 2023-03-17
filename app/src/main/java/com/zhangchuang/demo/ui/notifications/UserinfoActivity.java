@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -28,15 +29,14 @@ public class UserinfoActivity extends AppCompatActivity {
     private ApplicationServiceImpl applicationService;
 
     private Retrofit mRetrofit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinfo);
-        getSupportActionBar().hide();
         initInfo();
         getUserInfoBuNetWork();
     }
-
 
 
     /**
@@ -44,6 +44,7 @@ public class UserinfoActivity extends AppCompatActivity {
      */
     public void initInfo() {
         applicationService = new ApplicationServiceImpl(getApplicationContext());
+        setTitle("个人资料");
     }
 
     /**
@@ -110,22 +111,37 @@ public class UserinfoActivity extends AppCompatActivity {
     /**
      * 展示用户信息
      */
-    public void displayUserInfo(User user){
-
-        TextView userId = findViewById(R.id.info_userid);
-        userId.setText(user.getUserId());
-        TextView userName = findViewById(R.id.info_username);
-        userName.setText(user.getUserName());
-        TextView phone = findViewById(R.id.info_phone);
-        phone.setText(user.getPhonenumber());
-        TextView email = findViewById(R.id.info_email);
-        email.setText(user.getEmail());
-        TextView sex = findViewById(R.id.info_sex);
-        if (0 == user.getSex()){
-            sex.setText("男");
-        }else {
-            sex.setText("女");
+    public void displayUserInfo(User user) {
+        System.out.println("显示头像放出信息--->" + user);
+        String headImageAddress = applicationService.readNetworkInfo() + user.getAvatar();
+        Log.e("SUCCESS", "头像地址--->" + headImageAddress);
+        //用户头像
+        ImageView headImage = findViewById(R.id.user_images);
+        //用户头像旁边的昵称
+        TextView username = findViewById(R.id.user_name);
+        username.setText(user.getUserName());
+        //设置邮箱
+        TextView email = findViewById(R.id.user_email);
+        if (user.getEmail() != "") {
+            email.setText(user.getEmail());
+        } else {
+            email.setText("未绑定邮箱");
         }
+        //设置电话
+        TextView phoneNumber = findViewById(R.id.user_phone_number);
+        phoneNumber.setText(user.getPhonenumber());
+        //设置性别
+        TextView gender = findViewById(R.id.user_gender);
+        if (user.getSex() == 0) {
+            gender.setText("男");
+        } else {
+            gender.setText("女");
+        }
+        TextView account = findViewById(R.id.user_account);
+        account.setText(user.getUserId());
+        //显示昵称
+        TextView nickName = findViewById(R.id.user_nick_name);
+        nickName.setText(user.getNickName());
 
 
     }
